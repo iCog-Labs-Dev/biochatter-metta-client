@@ -9,8 +9,8 @@ export default {
         'logo': "url('/src/assets/triangles.png')",
         'logo': "url('/src/assets/dark_2.png')",
         'logo': "url('/src/assets/bg-logo.png')",
-        'logo': "url('/src/assets/green.png')",
         'logo': "url('/src/assets/colorful.png')",
+        'logo': "url('/src/assets/green.png')",
       }
     },
   },
