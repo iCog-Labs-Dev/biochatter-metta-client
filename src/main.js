@@ -1,18 +1,32 @@
 import { createApp } from 'vue'
 import { createMemoryHistory, createRouter } from 'vue-router'
 import App from './App.vue'
+
+//views
 import Settings from './views/Settings.vue'
 import Chat from './views/Chat.vue'
 import Topics from './views/Topics.vue'
 import './style.css'
 
+//icons
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {library} from "@fortawesome/fontawesome-svg-core"
+import {fas} from '@fortawesome/free-solid-svg-icons'
+
+
+const app = createApp(App)
+
+library.add(fas)
+app.component('fa', FontAwesomeIcon)
+
+//router
 const router = createRouter({
     history: createMemoryHistory(),
     routes: [
       { path: '/', name: 'topics', component: Topics },
-      { path: '/about', name: 'chat', component: Chat },
+      { path: '/chat', name: 'chat', component: Chat },
       { path: '/settings', name: 'settings', component: Settings },
     ],
   })
 
-createApp(App).use(router).mount('#app')
+app.use(router).mount('#app')
