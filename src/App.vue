@@ -59,17 +59,18 @@
 
         
 
-        <div class="cont items-center  outline-1 flex flex-col flex-1 overflow-y-scroll [scrollbar-width:none] overflow-hidden h-5/6">
-          <div class="flex gap-5 justify-center items-center w-full h-10">
+        <div class="cont boutline items-center  outline-1 flex flex-col flex-1 overflow-y-scroll [scrollbar-width:none] overflow-x-hidden h-5/6">
           
-          <hr class="w-1/3">
-          Today
-          <hr class="w-1/3">
+          <div class="flex gap-5 p-10 justify-center items-center w-full h-10">
+            <hr class="w-1/3">
+            Today
+            <hr class="w-1/3">
           </div>
-          <router-link v-for="i in 10" :to="{name:'chat'}" >
+          
+          <router-link class="w-full" v-for="i in 10" :to="{name:'chat'}" >
             <div class="card p-3 text-center md:text-start hover:bg-white/40 ">
               
-              <div class="boutline boutline-red-500 flex md:justify-between items-center">
+              <div class="boutline outline-red-500 w-fit m-auto flex md:justify-between items-center">
                 <p class="font-medium whitespace-nowrap text-ellipsis overflow-hidden text-lg md:inline boutline outline-blue-600 w-[20ch]">
                   Chat Name Chat NameChat NameChat NameChat NameChat NameChat Name
                 </p>
