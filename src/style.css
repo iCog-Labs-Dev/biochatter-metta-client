@@ -3,3 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .bg-card {
+      @apply backdrop-filter backdrop-blur-[8px] bg-slate-900/50 ;
+    }
+  }

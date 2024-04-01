@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createMemoryHistory, createRouter } from 'vue-router'
+import store from './store/index'
 import App from './App.vue'
 
 //views
@@ -29,4 +30,4 @@ const router = createRouter({
     ],
   })
 
-app.use(router).mount('#app')
+app.use(store).use(router).mount('#app')
