@@ -21,8 +21,7 @@
     <div>
         <!-- <label for="description">Enter description</label> -->
         <!-- <input id="title" class="p-2 w-1/2" placeholder="Description" type="text"/> -->
-        <textarea id="title" class="p-3 rounded-md w-3/4 resize-y h-max-content outline-none" placeholder="Description" type="text">
-        </textarea>
+        <textarea id="title" class="p-3 rounded-md w-3/4 resize-y h-max-content outline-none" placeholder="Description" type="text"/>
     </div>
 
     <div>

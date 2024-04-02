@@ -17,7 +17,7 @@ import ModalContainer from './ModalContainer.vue';
                 <div class="boutline [height:auto]  border-black border-l-2 outline-1 outline-red-500 overflow-y-scroll p-3 w-full">
                     <p class="p-6  border-b border-gray-500">Theme</p>
                     <p class="p-6  border-b border-gray-500">Archive Chats</p>
-                    <p class="p-6  border-b border-gray-500">Delete all chats</p>
+                    <p class="p-6">Delete all chats</p>
                 </div>
             </div>
 
