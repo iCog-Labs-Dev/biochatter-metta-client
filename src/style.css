@@ -9,4 +9,19 @@
     .bg-card {
       @apply backdrop-filter backdrop-blur-[8px] bg-slate-900/50 ;
     }
+    .input-style {
+      @apply text-white bg-white/10 backdrop-blur-md backdrop-filter outline-none border-[2px] border-white;
+    }
+    .chat-in{
+      @apply flex gap-2;
+    }
+    .chat-out{
+      @apply flex-row-reverse ;
+    }
+    .chat-image{
+      @apply bg-white aspect-square rounded-full h-fit p-1;
+    }
+    .chat-message{
+      @apply input-style w-fit rounded-2xl px-3;
+    }
   }

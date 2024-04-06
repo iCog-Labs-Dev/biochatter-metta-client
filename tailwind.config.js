@@ -11,7 +11,7 @@ export default {
         'logo': "url('/src/assets/colorful.png')",
         'logo': "url('/src/assets/green.png')",
         'logo': "url('/src/assets/rejuve.png')",
-        'logo': "url('/src/assets/bg-logo.png')s",
+        'logo': "url('/src/assets/bg-logo.png')",
       }
     },
   },

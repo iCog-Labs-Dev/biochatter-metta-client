@@ -7,11 +7,13 @@ import { computed } from 'vue'
 import Settings from './components/Settings.vue'
 import ModalContainer from './components/ModalContainer.vue' 
 import File from './components/File.vue';
+import Help from './components/Help.vue';
 
 let show = ref(false);
 let isModalVisible = ref(true);
 let isModalSettings = ref(false);
 let isModalFile = ref(false);
+let isModalHelp = ref(false);
 
 
 const store = useStore()
@@ -19,6 +21,10 @@ const chatList = computed(() => store.state.chatList)
 </script>
 
 <template>
+  <ModalContainer title="Help" v-if="isModalHelp" v-model="isModalHelp" >
+    <Help      />
+  </ModalContainer>
+
   <ModalContainer title="Settings" v-if="isModalSettings" v-model="isModalSettings" >
     <Settings      />
   </ModalContainer>
@@ -137,7 +143,8 @@ const chatList = computed(() => store.state.chatList)
           
           <!-- <router-link :to="{name:'chat'}"> -->
             <!-- <fa icon="home" /> -->
-            <fa @click='isModalFile =  !isModalFile;' 
+            <fa
+            @click='isModalFile =  !isModalFile;' 
             class="cursor-pointer"
             icon="folder-plus" />
           <!-- </router-link> -->
@@ -174,7 +181,8 @@ const chatList = computed(() => store.state.chatList)
           </div> -->
           
           <!-- <div> -->
-            <fa 
+            <fa
+            @click='isModalHelp =  !isModalHelp;' 
             class="aspect-square bg-white/20 hover:bg-white/40 rounded-full p-3" 
             icon="question"/>
           <!-- </div> -->
