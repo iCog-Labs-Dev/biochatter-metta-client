@@ -10,31 +10,33 @@ export default {
     // nameSpaced: true,
     state() {
         return {
-            chatList: [
-                {
-                    chatName:'Name',
-                    chatTime:'dec 22, 2024',
-                },
-                {
-                    chatName:'Name',
-                    chatTime:'dec 22, 2024',
-                },
-                {
-                    chatName:'Name',
-                    chatTime:'dec 22, 2024',
-                },
-                {
-                    chatName:'Name',
-                    chatTime:'dec 22, 2024',
-                },
-                {
-                    chatName:'Name',
-                    chatTime:'dec 22, 2024',
-                },
-            ],
+            chatList:null,
+            chat:null,
+            searchResults:null,
+            // chatList: [
+            //     {
+            //         chatName:'Name',
+            //         chatTime:'dec 22, 2024',
+            //     },
+            //     {
+            //         chatName:'Name',
+            //         chatTime:'dec 22, 2024',
+            //     },
+            //     {
+            //         chatName:'Name',
+            //         chatTime:'dec 22, 2024',
+            //     },
+            //     {
+            //         chatName:'Name',
+            //         chatTime:'dec 22, 2024',
+            //     },
+            //     {
+            //         chatName:'Name',
+            //         chatTime:'dec 22, 2024',
+            //     },
+            // ],
             // rock: null,
             // paginationDataRocks: null,
-            // searchResults:null,
             // singleRock: null
           
         }

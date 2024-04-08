@@ -2,7 +2,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed,onMounted } from 'vue'
 
 import Settings from './components/Settings.vue'
 import ModalContainer from './components/ModalContainer.vue' 
@@ -18,6 +18,10 @@ let isModalHelp = ref(false);
 
 const store = useStore()
 const chatList = computed(() => store.state.chatList)
+
+onMounted(()=>{
+  store.dispatch('loadChatList')
+})
 </script>
 
 <template>

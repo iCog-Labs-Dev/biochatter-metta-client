@@ -1,3 +1,14 @@
+<script setup>
+import { useStore } from 'vuex';
+import { computed, onMounted } from 'vue';
+
+let store = useStore()
+onMounted(() => {
+//   console.log("first")
+//   store.dispatch('loadList');
+})
+</script>
+
 <template>
    <div class="flex flex-col  flex-1 gap-5 w-full h-1/2 p-5 m-auto text-black">
 

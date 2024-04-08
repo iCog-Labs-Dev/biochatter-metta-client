@@ -1,21 +1,21 @@
 import axios from "axios";
 // import { chatUrl } from "../../../urls";
-import chatUrl from "../../../urls/index.js"
+import urls from "../../../urls/index.js"
 
-const url = chatUrl;
+const url = urls.chatUrl;
 const Authorization = "";
 
 export default {
-  async loadList() {
+  async loadChatList(context) {
 
-    console.log("first")
-    console.log({url})
+
+    console.log(url)
     const response = await axios({
       method: "get",
       url
     });
-    console.log('loadList');
-    console.log({response});
-    // context.commit("saveRocks", response.data);
+    console.log('loadChatList');
+    console.log(response.data.results);
+    context.commit("saveChatList", response.data.results);
   },
 };

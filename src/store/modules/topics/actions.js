@@ -1,21 +1,21 @@
 import axios from "axios";
-import topicUrl from "../../../urls/index.js"
+import urls from "../../../urls/index.js"
 
-const url = topicUrl
+const url = urls.topicUrl
 
 ;
 export default {
-  async loadTopics() {
-    console.log("first")
+  async loadTopics(context) {
+    
+    console.log("topics")
     console.log({url})
     const response = await axios({
-      method: "Get",
+      method: "get",
       url
     });
     console.log('loadTopics');
-    console.log({response});
-
-    console.log('loadTopics')
+    console.log(response.data.results);
+    context.commit("saveTopics", response.data.results);
   },
 
 };

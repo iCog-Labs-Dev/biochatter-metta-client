@@ -1,15 +1,12 @@
 export default {
 
-    savechatList(state, payload) {
+    saveChatList(state, payload) {
         state.chatList = payload;
     },
-    // saveRock(state, payload) {
-    //     state.rock = payload;
-    // },
-    // savePaginationData(state, payload) {
-    //     state.paginationDataRocks = payload;
-    // },
-    // saveSearchResults(state, payload) {
-    //     state.searchResults = payload
-    // },
+    saveChat(state, payload) {
+        state.chat = payload;
+    },
+    saveSearchResults(state, payload) {
+        state.searchResults = payload
+    },
 }
