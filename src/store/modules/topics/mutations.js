@@ -1,15 +1,9 @@
 export default {
 
     saveTopics(state, payload) {
-        state.Topics = payload;
+        state.topics = payload;
     },
-    // saveRock(state, payload) {
-    //     state.rock = payload;
-    // },
-    // savePaginationData(state, payload) {
-    //     state.paginationDataRocks = payload;
-    // },
-    // saveSearchResults(state, payload) {
-    //     state.searchResults = payload
-    // },
+    addForm(state, formData) {
+        state.submittedForms.push(formData);
+      }
 }

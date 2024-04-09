@@ -10,6 +10,7 @@ export default {
     // nameSpaced: true,
     state() {
         return {
+            submittedForms: [],
             topics:null
         //     topics: [
         //         "How to connect langchain to search engines with serpapi?",

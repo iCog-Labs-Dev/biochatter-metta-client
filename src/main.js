@@ -24,8 +24,8 @@ app.component('fa', FontAwesomeIcon)
 const router = createRouter({
     history: createMemoryHistory(),
     routes: [
-      { path: '/', name: 'topics', component: Topics },
-      { path: '/chat', name: 'chat', component: Chat },
+      { path: '/', name: 'topics', component: Topics,  },
+      { path: '/chat/:id', name: 'chat', component: Chat },
       { path: '/settings', name: 'settings', component: Settings },
     ],
   })

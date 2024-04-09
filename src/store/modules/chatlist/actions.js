@@ -8,7 +8,7 @@ const Authorization = "";
 export default {
   async loadChatList(context) {
 
-
+    console.log("chat list")
     console.log(url)
     const response = await axios({
       method: "get",
@@ -18,4 +18,19 @@ export default {
     console.log(response.data.results);
     context.commit("saveChatList", response.data.results);
   },
+
+
+  async delChat(context,data) {
+
+    console.log("del chat")
+    console.log(url)
+    console.log(data)
+    await axios({
+      method: "delete",
+      url:url + data.id,
+    });
+    // console.log(response.data.results);
+    // context.commit("delChat", response.data.results);
+  },
+
 };

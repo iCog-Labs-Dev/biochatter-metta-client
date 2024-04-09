@@ -1,13 +1,17 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useStore } from 'vuex'
-import { computed,onMounted } from 'vue'
+import { useStore } from 'vuex';
+import { computed,onMounted } from 'vue';
+import { dateFormatter } from './utils';
 
 import Settings from './components/Settings.vue'
 import ModalContainer from './components/ModalContainer.vue' 
 import File from './components/File.vue';
 import Help from './components/Help.vue';
+import {useRoute} from "vue-router";
+
+// let route = useRoute();
 
 let show = ref(false);
 let isModalVisible = ref(true);
@@ -15,13 +19,25 @@ let isModalSettings = ref(false);
 let isModalFile = ref(false);
 let isModalHelp = ref(false);
 
-
 const store = useStore()
 const chatList = computed(() => store.state.chatList)
+// const route = computed(() => {
+//   let route = useRoute();
+//   route.params.id
+// })
+const deleteChat = (id) =>{
+  console.log(id)
+  store.dispatch('delChat',{id})
+  store.dispatch('loadChatList')
+}
+
+
 
 onMounted(()=>{
   store.dispatch('loadChatList')
 })
+
+
 </script>
 
 <template>
@@ -99,21 +115,24 @@ onMounted(()=>{
             Today
             <hr class="w-1/3">
           </div>
-          
-          <router-link class="w-full" v-for="i in chatList.chatList" :to="{name:'chat'}" >
-            <div 
-            class="card p-3 text-center md:text-start hover:bg-white/40 ">
+
+          <router-link class="w-full" v-for="i in chatList.chatList" :to="{name:'chat', params:{id:i.id}}">
+            <div class="card p-3 text-center md:text-start hover:bg-white/40 ">
               
               <div class="w-full boutline flex gap-5 justify-between items-center p-1">
                 <p class="boutline text-start w-full">
                   <span class="block font-medium bwhitespace-nowrap text-ellipsis overflow-hidden text-lg boutline outline-blue-600 bw-[20ch] md:bw-[8ch] lg:bw-[25ch]">
-                    {{ i.chatName }}
+                    {{ i.chat_name }} {{ i.id }}
                   </span>
-                  <span class="text-slate-400 md:text-sm font-light py-2"> {{ i.chatTime }}</span>
+                  <span class="text-slate-400 md:text-sm font-light py-2"> 
+                    {{ dateFormatter(i.chat_created_at) }}
+                  </span>
                 </p>
                 
-                <div class="hover:bg-white/40 bg-white/20 px-3 py-1 rounded-full">
-                  <fa icon="broom" />
+                <div 
+                @click="deleteChat(i.id)"
+                class="hover:bg-white/40 bg-white/20 px-3 py-1 rounded-full">
+                <fa icon="broom" />
                 </div>
 
               </div>

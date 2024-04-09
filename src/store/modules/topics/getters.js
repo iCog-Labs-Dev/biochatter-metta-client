@@ -1,6 +1,6 @@
 export default {
     topics(state) {
-        return state.chatList;
+        return state.topics;
     },
     // 
     // rock(state) {
