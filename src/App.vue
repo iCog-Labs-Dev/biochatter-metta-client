@@ -20,7 +20,7 @@ let isModalFile = ref(false);
 let isModalHelp = ref(false);
 
 const store = useStore()
-const chatList = computed(() => store.state.chatList)
+const chatList = computed(() => store.state.chat)
 // const route = computed(() => {
 //   let route = useRoute();
 //   route.params.id
@@ -87,26 +87,7 @@ onMounted(()=>{
             </input>
         </div>
 
-        <!-- <div class="bg-white/20 text-white/40 overflow-hidden flex p-3 rounded-full capitalize gap-5 pl-10"> 
-        
-          <fa icon="rotate-left"/>
-          <span>
-            clear all chats
-          </span>
-        </div> -->
-
-                <!-- search -->
-        <!-- <div class="group flex items-center  bottom-[50px] left-1/2 ">
-          <input 
-            class="placeholder-white/40 bg-white/50 backdrop-filter pl-14 backdrop-blur-md relative w-full rounded-full text-white-700 outline-none border-[2px] border-white h-fit p-4" type="text"
-            placeholder="Clear all chats">
-
-              <fa class="inline cursor-pointer text-x text-white absolute left-5 hover:bg-white origin-center duration-200 hover:text-black/50 h-6 rounded-full p-4" icon="rotate-left" /> 
-            
-            </input>
-        </div> -->
-
-        
+  
 
         <div class="cont boutline items-center outline-1 flex flex-col flex-1 overflow-y-scroll [scrollbar-width:none] overflow-x-hidden h-5/6">
           
@@ -122,7 +103,7 @@ onMounted(()=>{
               <div class="w-full boutline flex gap-5 justify-between items-center p-1">
                 <p class="boutline text-start w-full">
                   <span class="block font-medium bwhitespace-nowrap text-ellipsis overflow-hidden text-lg boutline outline-blue-600 bw-[20ch] md:bw-[8ch] lg:bw-[25ch]">
-                    {{ i.chat_name }} {{ i.id }}
+                    {{ i.chat_name }} {{ i.topic_id }}
                   </span>
                   <span class="text-slate-400 md:text-sm font-light py-2"> 
                     {{ dateFormatter(i.chat_created_at) }}

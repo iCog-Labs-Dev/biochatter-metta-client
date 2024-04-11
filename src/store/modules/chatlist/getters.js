@@ -8,11 +8,7 @@ export default {
     searchResults(state) {
         return state.searchResults
     },
-    // 
     hasChats(state) {
-        return state.chats && state.chatList.length > 0;
+        return state.chat && state.chatList.length > 0;
     },
-    // paginationDataRocks(state) {
-    //     return state.paginationDataRocks;
-    // },
 }

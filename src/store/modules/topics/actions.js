@@ -65,30 +65,5 @@ export default {
       // throw error;
     }
   },
-  async sendChat(context,data) {
 
-    console.log("chat")
-    console.log(data)
-
-    const response = await axios({
-      method: "post",
-      url:url + data.chat_id+ '/chats/',
-      data:{
-        chat_name:data.msg
-      }
-    });
-    console.log(response);
-    // context.commit("saveChat", response.data.results);
-  },
-  async getChat(context,data) {
-
-    console.log("chat")
-
-    const response = await axios({
-      method: "get",
-      url:url + data.chat_id+ '/chats/',
-    });
-    console.log('reply',response.data.results);
-    context.commit("saveChat", response.data.results);
-  }
 };

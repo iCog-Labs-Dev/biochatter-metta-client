@@ -11,7 +11,7 @@ export default {
     state() {
         return {
             chatList:null,
-            chat:null,
+            chat:[],
             searchResults:null,
             // chatList: [
             //     {

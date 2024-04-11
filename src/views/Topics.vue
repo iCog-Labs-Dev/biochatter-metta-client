@@ -13,6 +13,7 @@ const startNewChat = (i) => {
 onMounted(() => {
   console.log("mounted")
   store.dispatch('loadTopics');
+  console.log('topics',topics)
 })
 
 </script>

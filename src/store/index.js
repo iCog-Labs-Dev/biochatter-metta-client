@@ -4,7 +4,7 @@ import topicsModule from "./modules/topics/index";
 
 const store = createStore({
     modules: {
-        chatList: chatListModule,
+        chat: chatListModule,
         topics:topicsModule,
     }
 });
