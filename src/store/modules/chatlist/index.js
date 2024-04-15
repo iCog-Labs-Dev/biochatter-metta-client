@@ -13,6 +13,7 @@ export default {
             chatList:null,
             chat:[],
             searchResults:null,
+            isWaiting:true
             // chatList: [
             //     {
             //         chatName:'Name',

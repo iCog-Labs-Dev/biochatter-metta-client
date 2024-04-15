@@ -1,24 +1,22 @@
 import axios from "axios";
 import urls from "../../../urls/index.js"
+import utils from "../../../utils/index.js"
+
 
 const url = urls.chatUrl;
-const Authorization = "";
+const errorHandler = utils.errorHandler;
 
-export default {
-  async loadChatList(context) {
-
-    console.log("chat list")
-    console.log(url)
+const loadChatList= errorHandler(async (context) => { 
+    // console.log('status', status)
     const response = await axios({
       method: "get",
       url
     });
-    console.log('loadChatList');
-    console.log(response.data.results);
     context.commit("saveChatList", response.data.results);
-  },
+  }
+  )
 
-  async delChat(context,data) {
+const delChat= errorHandler(async (context,data) => {
 
     console.log("del chat")
     console.log(url)
@@ -27,21 +25,19 @@ export default {
       method: "delete",
       url:url + data.id,
     });
-    // console.log(response.data.results);
-    // context.commit("delChat", response.data.results);
-  },
+  })
 
-  async sendChat(context,data) {
-
-    try{
+const sendChat= errorHandler(async (context,data) => {
 
       let user_question = {
         is_user_message: true,
         message_text: data.msg,
         message_updated_at: new Date().now,
       }
-      context.commit("appendChat", user_question);
-      console.log('waiting...')
+    context.commit("appendChat", user_question);
+    console.log('waiting...')
+    context.commit("toggleWait", true);
+
       const response = await axios({
         method: "post",
         url: url + data.chat_id + '/messages/',
@@ -49,22 +45,18 @@ export default {
         message_text:data.msg
       }
     });
-
+    console.log('response',response)
     context.commit("appendChat", response.data.llm_response);
-    }
-    catch(error){
-      let llm_response = {
-        // chat_id: 13,
-        is_user_message: false,
-        // message_created_at: "2024-04-11T10:12:44.994411Z",
-        message_text: error,
-        message_updated_at: new Date().now,
-      }
-      context.commit("appendChat", llm_response);
-    }
-  },
+    context.commit("toggleWait",false);  
+  // }
+    // catch(error){
+      // const {data,status,statusText} = error.response
+      // context.commit("toggleWait");
+      // store.dispatch('newStatus',{data,status,statusText})
+    // }
+  })
 
-  async getChat(context,data) {
+const getChat= errorHandler(async (context,data) => {
 
     const response = await axios({
       method: "get",
@@ -72,5 +64,10 @@ export default {
     });
     // console.log('reply',response.data.results);
     context.commit("saveChat", response.data.results);
-  }
-};
+  })
+
+// };
+
+export default {
+  loadChatList,delChat,sendChat,getChat
+}

@@ -1,10 +1,13 @@
 import axios from "axios";
 import urls from "../../../urls/index.js"
+import utils from "../../../utils/index.js"
+
 
 const url = urls.topicUrl;
+const errorHandler = utils.errorHandler;
 
-export default {
-  async loadTopics(context) {
+// export default {
+  const loadTopics = errorHandler(async(context) => {
     
     console.log("topics")
     console.log({url})
@@ -15,9 +18,9 @@ export default {
     console.log('loadTopics');
     console.log(response.data.results);
     context.commit("saveTopics", response.data.results);
-  },
+  })
 
-  async startNewChat(context,data){
+  const startNewChat = errorHandler(async(context,data)=>{
 
     console.log("startNewChat")
     console.log({url});
@@ -37,9 +40,9 @@ export default {
     // console.log(response.data.results);
     // context.commit("saveTopics", response.data.results);
     
-  },
+  })
 
-  async submitTopic(context, formData) {
+  const submitTopic = errorHandler(async(context, formData) =>{
     console.log(formData)
     console.log(formData.topic_name)
     try {
@@ -64,6 +67,10 @@ export default {
       // console.error('Error submitting form:', error);
       // throw error;
     }
-  },
+  })
 
+
+
+export default {
+  loadTopics, startNewChat, submitTopic
 };

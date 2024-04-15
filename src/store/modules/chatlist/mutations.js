@@ -4,7 +4,7 @@ export default {
         state.chatList = payload;
     },
     appendChat(state,payload) {
-        state.chat=[...state.chat,payload]
+        state.chat=[payload,...state.chat]
     },
     saveChat(state, payload) {
         state.chat = payload;
@@ -12,4 +12,7 @@ export default {
     saveSearchResults(state, payload) {
         state.searchResults = payload
     },
+    toggleWait(state, payload){
+      state.isWaiting = payload
+    }
 }

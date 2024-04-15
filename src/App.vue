@@ -3,44 +3,71 @@
 import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { computed,onMounted } from 'vue';
-import { dateFormatter } from './utils';
+import utils from './utils';
 
 import Settings from './components/Settings.vue'
 import ModalContainer from './components/ModalContainer.vue' 
 import File from './components/File.vue';
 import Help from './components/Help.vue';
-import {useRoute} from "vue-router";
-
-// let route = useRoute();
 
 let show = ref(false);
-let isModalVisible = ref(true);
+// let isModalVisible = ref(true);
 let isModalSettings = ref(false);
 let isModalFile = ref(false);
 let isModalHelp = ref(false);
 
-const store = useStore()
-const chatList = computed(() => store.state.chat)
-// const route = computed(() => {
-//   let route = useRoute();
-//   route.params.id
-// })
+const {dateFormatter} = utils
+const store = useStore();
+const chatList = computed(() => store.state.chat);
+const status = computed(() => store.state.status);
+
 const deleteChat = (id) =>{
-  console.log(id)
   store.dispatch('delChat',{id})
   store.dispatch('loadChatList')
 }
-
-
 
 onMounted(()=>{
   store.dispatch('loadChatList')
 })
 
+// const throwError = () => {
+//   store.dispatch('newStatus','sdfsdf')
+// }
+
 
 </script>
 
 <template>
+
+  <div 
+  :class="status.isPresent? 'scale-1' : 'scale-0'"
+  class="
+  scale-1 transition-transform duration-700
+  flex flex-col gap-10 h-fit p-5 rounded-md absolute m-auto left-1/2 -translate-x-1/2 top-10 
+  w-1/4 cbg-slate-600 text-white input-style z-[9999999999999]">
+    
+  <p v-if="status.isPresent">
+
+    {{ status.status[0].data }}
+    {{ status.status[0].statusText }}
+    
+  </p>
+    <div class="actions flex justify-around">
+
+      <!-- <Button
+      class="bg-white text-black w-fit mx-auto p-4 capitalize rounded-xl"
+      @click="throwError"
+      > insert error</Button> -->
+      
+      <Button
+      class="bg-white text-black w-fit mx-auto p-4 capitalize rounded-xl"
+      @click="store.dispatch('remStatus')"
+      >
+      cancel
+    </Button>
+  </div>
+  
+  </div>
   <ModalContainer title="Help" v-if="isModalHelp" v-model="isModalHelp" >
     <Help      />
   </ModalContainer>

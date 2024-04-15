@@ -19,7 +19,7 @@
       @apply flex-row-reverse ;
     }
     .chat-image{
-      @apply bg-white aspect-square rounded-full h-fit p-1;
+      @apply bg-white aspect-square rounded-full h-fit p-1 w-10;
     }
     .chat-message{
       @apply input-style w-fit rounded-2xl px-3;
