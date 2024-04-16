@@ -1,6 +1,6 @@
 
 
-const topicUrl = import.meta.env.VITE_SERVER_URL + "/topics/";
+const topicUrl = import.meta.env.VITE_SERVER_URL + "/examples/";
 const chatUrl = import.meta.env.VITE_SERVER_URL + "/chats/";
 const exampleUrl = import.meta.env.VITE_SERVER_URL + "/examples/";
 

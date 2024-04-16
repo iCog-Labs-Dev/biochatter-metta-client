@@ -14,6 +14,7 @@ const isWaiting = computed(() => store.state.chat.isWaiting);
 onMounted(() => {
   store.dispatch('getChat',{chat_id: route.params.id});
   console.log(isWaiting)
+  console.log('mounted chat')
 })
 
 watch(()=> route.params.id, (newId,oldId) => {
@@ -35,6 +36,7 @@ const sendChat = () =>{
     <!-- message-out -->
     <!-- :src="i.is_user_message ? './../assets/logo.png' : './../assets/logo.png'" -->
     <div 
+    v-if="chat.length >= 1"
     v-for="i in chat"
     :class="i.is_user_message ? 'chat-out' : ''"
     class="chat-in">
@@ -43,7 +45,6 @@ const sendChat = () =>{
       :src="i.is_user_message ? './../assets/user_icon.png' : './../assets/logo.png'"
       alt="" />
       <p class="chat-message"> {{ i.message_text }} </p>
-      <!-- <p class="chat-message"> {{ marked.parse(i.message_text) }} </p> -->
     </div>
 
   </div>

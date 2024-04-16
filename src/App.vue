@@ -21,8 +21,8 @@ const store = useStore();
 const chatList = computed(() => store.state.chat);
 const status = computed(() => store.state.status);
 
-const deleteChat = (id) =>{
-  store.dispatch('delChat',{id})
+const deleteChat = (data) =>{
+  store.dispatch('delChat',data)
   store.dispatch('loadChatList')
 }
 
@@ -43,7 +43,7 @@ onMounted(()=>{
   :class="status.isPresent? 'scale-1' : 'scale-0'"
   class="
   scale-1 transition-transform duration-700
-  flex flex-col gap-10 h-fit p-5 rounded-md absolute m-auto left-1/2 -translate-x-1/2 top-10 
+  flex flex-col gap-10 h-fit max-h-full max-w-full p-5 rounded-md absolute m-auto left-1/2 -translate-x-1/2 top-10 
   w-1/4 cbg-slate-600 text-white input-style z-[9999999999999]">
     
   <p v-if="status.isPresent">
@@ -91,17 +91,6 @@ onMounted(()=>{
           <span class="text-2xl font-bold">BioChatter-MeTTa</span>
         </div>
 
-        <!-- <div class="bg-white/20 text-white/40 overflow-hidden flex p-3 rounded-full capitalize gap-16 justify-around  items-center "> 
-          <div class="flex items-center gap-5">
-            <fa class="" icon="search"/>
-            <span class="text-white/40">
-              search
-            </span>
-          </div>
-
-          <fa class="text-white/40" icon="xmark"/>
-        </div> -->
-
         <!-- search -->
         <div class="group flex  items-center relative rounded-full  overflow-hidden mx-4">
             <input 
@@ -115,16 +104,16 @@ onMounted(()=>{
         </div>
 
   
-
-        <div class="cont boutline items-center outline-1 flex flex-col flex-1 overflow-y-scroll [scrollbar-width:none] overflow-x-hidden h-5/6">
+      
+        <div class="cont boutline items-center outline-1 flex flex-col-reverse flex-1 overflow-y-scroll [scrollbar-width:none] overflow-x-hidden h-5/6">
           
-          <div class="flex gap-5 p-10 justify-center items-center w-full h-10">
+          <!-- <div class="flex gap-5 p-10 justify-center items-center w-full h-10">
             <hr class="w-1/3">
             Today
             <hr class="w-1/3">
-          </div>
+          </div> -->
 
-          <router-link class="w-full" v-for="i in chatList.chatList" :to="{name:'chat', params:{id:i.id}}">
+          <router-link class="w-full" v-for="(i,index) in chatList.chatList" :to="{name:'chat', params:{id:i.id}}">
             <div class="card p-3 text-center md:text-start hover:bg-white/40 ">
               
               <div class="w-full boutline flex gap-5 justify-between items-center p-1">
@@ -138,8 +127,8 @@ onMounted(()=>{
                 </p>
                 
                 <div 
-                @click="deleteChat(i.id)"
-                class="hover:bg-white/40 bg-white/20 px-3 py-1 rounded-full">
+                @click="deleteChat({id:i.id,index})"
+                class="hover:bg-red-700/80 bg-white/20 px-3 py-1 rounded-full">
                 <fa icon="broom" />
                 </div>
 

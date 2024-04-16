@@ -20,27 +20,6 @@ const errorHandler = utils.errorHandler;
     context.commit("saveTopics", response.data.results);
   })
 
-  const startNewChat = errorHandler(async(context,data)=>{
-
-    console.log("startNewChat")
-    console.log({url});
-    console.log(url + data.id + '/chats/')
-    // console.log('data',data)
-    console.log(data)
-    await axios({
-      method: "post",
-      url:url + data.id + '/chats/',
-      data:{
-        chat_name:data.topic_name
-      }
-    });
-    // console.log('startNewChat');
-
-    // await loadTopics()
-    // console.log(response.data.results);
-    // context.commit("saveTopics", response.data.results);
-    
-  })
 
   const submitTopic = errorHandler(async(context, formData) =>{
     console.log(formData)
@@ -72,5 +51,5 @@ const errorHandler = utils.errorHandler;
 
 
 export default {
-  loadTopics, startNewChat, submitTopic
+  loadTopics, submitTopic
 };

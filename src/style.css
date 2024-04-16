@@ -25,3 +25,8 @@
       @apply input-style w-fit rounded-2xl px-3;
     }
   }
+
+
+  html {
+    overflow: hidden;
+  }
