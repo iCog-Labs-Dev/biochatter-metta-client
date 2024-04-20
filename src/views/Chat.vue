@@ -2,7 +2,7 @@
 import { useStore } from 'vuex';
 import { computed,onMounted, ref,watch } from 'vue';
 import {useRoute} from "vue-router";
-// import  marked from "marked";
+import  {marked} from "marked";
 
 let route = useRoute();
 let chatInput = ref(null);
@@ -36,7 +36,7 @@ const sendChat = () =>{
     <!-- message-out -->
     <!-- :src="i.is_user_message ? './../assets/logo.png' : './../assets/logo.png'" -->
     <div 
-    v-if="chat.length >= 1"
+    v-if="chat.length >= 0"
     v-for="i in chat"
     :class="i.is_user_message ? 'chat-out' : ''"
     class="chat-in">
@@ -44,7 +44,10 @@ const sendChat = () =>{
       class="chat-image"
       :src="i.is_user_message ? './../assets/user_icon.png' : './../assets/logo.png'"
       alt="" />
-      <p class="chat-message"> {{ i.message_text }} </p>
+      
+      <div v-html="marked.parse(i.message_text)" class="chat-message">
+      </div>
+
     </div>
 
   </div>
