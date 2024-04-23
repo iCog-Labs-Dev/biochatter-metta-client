@@ -53,7 +53,7 @@ const sendChat = () =>{
   </div>
           <!-- stop loading -->
         <div 
-        :class="!isWaiting ? 'scale-1' : 'scale-0'"
+        :class="isWaiting ? 'scale-1' : 'scale-0'"
         class="group transition-all origin-center duration-700 w-1/4 flex items-center absolute bottom-[120px] left-1/2 -translate-x-1/2">
             <p class="input-style px-5 text-center flex items-center gap-1 p-1 rounded-full">
                Thinking...
