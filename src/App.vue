@@ -1,8 +1,10 @@
 
 <script setup>
+import {  useStore } from 'vuex';
+
 import { ref } from 'vue';
-import { useStore } from 'vuex';
 import { computed,onMounted } from 'vue';
+
 import utils from './utils';
 
 import Settings from './components/Settings.vue'
@@ -11,15 +13,18 @@ import File from './components/File.vue';
 import Help from './components/Help.vue';
 
 let show = ref(false);
-// let isModalVisible = ref(true);
+
 let isModalSettings = ref(false);
 let isModalFile = ref(false);
 let isModalHelp = ref(false);
 
 const {dateFormatter} = utils
+
 const store = useStore();
+
 const chatList = computed(() => store.state.chat);
 const status = computed(() => store.state.status);
+const kk = computed(() => store.state);
 
 const deleteChat = (data) =>{
   store.dispatch('delChat',data)
@@ -28,6 +33,13 @@ const deleteChat = (data) =>{
 
 onMounted(()=>{
   store.dispatch('loadChatList')
+  // store.dispatch('saveStep')
+  // saveSteps
+  console.log('chatList',chatList)
+  console.log('status',status.isPresent)
+  console.log('multiStep',kk.multiStep)
+  // console.log('store',store)
+  // console.log('store',store.commit("proceedToNextStep","plan"))
 })
 
 // const throwError = () => {
@@ -39,7 +51,7 @@ onMounted(()=>{
 
 <template>
 
-  <div 
+  <!-- <div 
   :class="status.isPresent? 'scale-1' : 'scale-0'"
   class="
   scale-1 transition-transform duration-700
@@ -54,10 +66,6 @@ onMounted(()=>{
   </p>
     <div class="actions flex justify-around">
 
-      <!-- <Button
-      class="bg-white text-black w-fit mx-auto p-4 capitalize rounded-xl"
-      @click="throwError"
-      > insert error</Button> -->
       
       <Button
       class="bg-white text-black w-fit mx-auto p-4 capitalize rounded-xl"
@@ -67,7 +75,8 @@ onMounted(()=>{
     </Button>
   </div>
   
-  </div>
+  </div> -->
+  
   <ModalContainer title="Help" v-if="isModalHelp" v-model="isModalHelp" >
     <Help      />
   </ModalContainer>
