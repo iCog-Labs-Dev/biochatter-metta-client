@@ -22,19 +22,18 @@ const stepInfo = [
             stepNo: 3,
             stepDesc: 'Confirm'
         },
-        // {
-        //     stepNo: 4,
-        //     stepDesc: 'summary'
-        // },
+        {
+            stepNo: 4,
+            stepDesc: 'Results'
+        },
     ]
 
 </script>
 
 <template>
-<!-- <p>steps</p> -->
 
     <div class='flex xlg:flex-col items-center gap-y-7 justify-center xlg:justify-start gap-x-5  xlg:gap-x-0 '>
-        <div 
+        <div
             v-for="stp of stepInfo" :key="stp.stepNo" 
             @click="true && store.dispatch('seekStep',(stp.stepNo -1)) "
             class="flex items-center justify-between gap-x-4"

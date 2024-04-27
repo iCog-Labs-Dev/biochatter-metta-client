@@ -8,22 +8,12 @@ export default {
     actions,
     state() {
         return {
-            multiStep:{
             step: 0,
-            personalInfo: {
-                name: '',
-                email: '',
-                phone: ''
-            },
-            plan: {
-                planName: '',
-                planAmount: 0,
-                planDuration: 'monthly'
-            },
-            addons: [],
+            dbname: "",
+            entities: "",
+            addons: "",
             total: 0,
             isCompleted: false
-        }
     }
     },
 

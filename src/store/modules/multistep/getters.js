@@ -5,10 +5,10 @@ export default {
     // multiStep(state) {
     //     return state.step;
     // },
-    personalInfo(state) {
-        return state.personalInfo;
+    dbname(state) {
+        return state.dbname;
     },
-    plan(state) {
+    entities(state) {
         return state.plan;
     },
     addons(state) {

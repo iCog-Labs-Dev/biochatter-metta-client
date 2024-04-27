@@ -1,9 +1,6 @@
 <script setup>
 
-defineProps{
-    title: string,
-    desc: string
-}
+defineProps(['title','desc'])
 
 </script>
 

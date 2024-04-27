@@ -4,11 +4,26 @@ import ThankYou from './ThankYou.vue';
 
 import {  useStore } from 'vuex';
 import { computed,onMounted } from 'vue';
+import ButtonContainer from './ButtonContainer.vue';
+import Confirm from '../views/Confirm.vue';
+import SelectNodes from '../views/SelectNodes.vue';
+import SelectField from '../views/SelectField.vue';
+import Summary from '../views/Summary.vue';
+
 
 
 const store = useStore();
 const multiStep = computed(() => store.state.multiStep);
 
+const handleSubmit = ()=>{
+    // const { planName, planAmount, planDuration} = planChoice.value
+
+    // if(planName && planAmount && planDuration){
+    //     multistepStore.proceedToNextStep(planChoice.value, NextActionProp.PLAN)
+    // }else{
+    //     error.value =true
+    // }
+}
 
 onMounted(()=>{
     // console.log('chatList',chatList)
@@ -19,47 +34,24 @@ onMounted(()=>{
 <template>
     <div class=' coverflow-scroll w-full grid place-items-center bg-color-light-gray' >
 
-        <!-- <div className='w-full cxl:w-4/6  xlg:w-[90%] h-full xlg:h-[73%] bg-transparent xlg:bg-color-whiten rounded-xl xlg:p-3  relative'> -->
-
-            <!-- <div className='flex flex-col items-center '> -->
-
                 <Stepper/>
 
-            <!-- <div className='flex-1 xlg:py-7 py-7 px-9 bg-color-whiten bg-red-500 absolute xlg:relative top-[9rem]  right-0 left-0 overflow-hidden  xlg:top-0 min-h-[60%] xlg:h-auto xlg:rounded-none rounded-2xl  2xl:mx-0 mx-4'> -->
+                <template v-if="multiStep.step === 0">
+                    <SelectField />
+                </template>
 
-                <!-- <template v-if="state.step === 0">
-                    <PersonalInfo/>
+                <template v-else-if="multiStep.step === 1">
+                    <SelectNodes />
                 </template>
-                <template v-else-if="state.step === 1">
-                    <SelectPlan/>
+
+                <template v-else-if="multiStep.step === 2">
+                    <Confirm />
                 </template>
-                <template v-else-if="state.step === 2">
-                    <PickAddon/>
-                </template>
-                <template v-else-if="state.step === 3">
-                    <Summary/>
-                </template> 
-                <template v-else-if="state.step === 0"> 
+
+                <template v-else-if="multiStep.step === 3"> 
                     <ThankYou/>
-                    </template>
-                -->
-                <!-- <template>  -->
-                    <!-- <ThankYou/> -->
-                <!-- </template> -->
-
-            <!-- </div> -->
-
-            <!-- </div> -->
-
-            <!-- <template> -->
-                <!-- {{ 1 }} -->
-                <div class="w-full h-fit bg-green-500">
-                    {{ 'multiStep' }}
-                    <ThankYou/>
-                </div>
-            <!-- </template> -->
-        
-        <!-- </div> -->
+                    <!-- <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" /> -->
+                </template>
 
     </div>
 </template>

@@ -2,53 +2,49 @@ export default {
 
     proceedToNextStep(state, payload) {
         console.log('state',state)
+        console.log('payload',payload)
+
         switch(payload){
-            case "personalInfo":
-                const latest = {...state, personalInfo: {...payload}, step: state.step + 1 }
-                localStorage.setItem('multistep', JSON.stringify(latest))
-                console.log("step",latest.step)
-               return state = latest
+            case "dbname":
+                state.dbname =  payload
+                state. step = state.step + 1 
+                localStorage.setItem('multistep', JSON.stringify(state))
+                return
 
-            case "plan":
-                const snapshot = {...state, plan: {...payload}, step: state.step + 1 }
-                localStorage.setItem('multistep', JSON.stringify(snapshot))
-                console.log("step",snapshot.step)
-                return state = snapshot
+            case "entities":
+                state.entities =  payload 
+                state.step = state.step + 1 
+                localStorage.setItem('multistep', JSON.stringify(state))
+                return
 
-            case "addon":
-                const current = {...state, addons: [...payload], step: state.step + 1 }
-                localStorage.setItem('multistep', JSON.stringify(current))
-               return state = current
+            case "confirm":
+                state.addons = payload
+                state.step = state.step + 1 
+                localStorage.setItem('multistep', JSON.stringify(state))
+               return
 
             default:
                 break;
         }
     },
-    goToPrevStep(state,payload) {
-        const current = {...state, step: state.value.step - 1 }
-        localStorage.setItem('multistep', JSON.stringify(current))
-        return state = current
+    goToPrevStep(state) {
+        state.step = state.step - 1
+        localStorage.setItem('multistep', JSON.stringify(state))
     },
-    goToPlanUI(state,payload) {
-        const current = {...state, step: 1}
-        localStorage.setItem('multistep', JSON.stringify(current))
-        return state = current
+    goToPlanUI(state) {
+        state.step = 1
+        localStorage.setItem('multistep', JSON.stringify(state))
+    },
+    completeStep(state) {
+        state.step = 4
+        localStorage.setItem('multistep', JSON.stringify(state))
 
     },
-    completeStep(state,payload) {
-        const current = {...state, step: 4, isCompleted: true}
-        localStorage.setItem('multistep', JSON.stringify(current))
-        return state = current
-
+    seek_step(state, payload) {
+        state.step = payload
+        localStorage.setItem('multistep', JSON.stringify(state))
     },
-    seekStep(state, payload) {
-        const current = {...state, step: payload}
-        localStorage.setItem('multistep', JSON.stringify(current))
-        state = current
-        // console.log(state)
-        return state
-    },
-    saveStep(state,payload){
-        return state = payload
-    }
+    // saveStep(state,payload){
+    //     return state = payload
+    // }
 }
