@@ -20,8 +20,8 @@ const fireEmitter = ()=>{
 </script>
 
 <template>
-    <div className='bg-color-whiten bg h-20 xlg:15  xlg:absolute xlg:bottom-2 xlg:w-auto xlg:max-w-[100%] xlg:mx-9 fixed bottom-0 w-full right-0 left-0'>
-        <div className='flex w-full  gap-x-6 justify-between items-center xlg:px-0 px-6 h-full'>
+    <div className='bg-white text-black fixed bottom-0 w-full right-0 left-0'>
+        <div className='flex w-full gap-x-6 justify-between items-center px-6 h-full'>
 
             <template v-if="step > 0 && step <= 3">
                 <PrevButton/>
