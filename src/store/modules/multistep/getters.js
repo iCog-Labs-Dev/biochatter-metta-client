@@ -11,12 +11,12 @@ export default {
     entities(state) {
         return state.plan;
     },
-    addons(state) {
-        return state.addons
-    },
-    plan(state) {
-        return state.plan;
-    },
+    // addons(state) {
+    //     return state.addons
+    // },
+    // plan(state) {
+    //     return state.plan;
+    // },
     total(state) {
         return state.total;
     },

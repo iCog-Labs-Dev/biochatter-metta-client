@@ -22,9 +22,16 @@ const handleSubmit = ()=>{
     <!-- <p>Select Field</p> -->
     <div class="w-full h-full py-10 text-center flex flex-col gap-5">
         <input class="input-style px-5 text-center mx-5 flex items-center gap-1 p-3 rounded-full" type="text" placeholder="Create Database Name" />
+        <input class="hidden" id="schema" type="file" />
+        <label for="schema"
+        class="bg-white cursor-pointer text-black hover:text-white hover:bg-black/30 capitalize w-fit  mx-auto px-5 py-3 rounded-full"
+        >
+        Upload Schema
+    </label>
+    
         <button 
         @click="handleSubmit"
-        class="bg-white text-black hover:text-white hover:bg-black/30 capitalize w-fit  mx-auto px-5 py-3 rounded-full">create</button>
+        class="bg-white text-black hover:text-white hover:bg-black/30 capitalize w-fit  mx-auto px-5 py-3 rounded-full cursor-pointer">create</button>
         
         <p class="bg-white text-black w-full p-2 text-xl">Use an existing databse</p>
         

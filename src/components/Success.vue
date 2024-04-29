@@ -13,7 +13,7 @@
       
       <div>
         
-        <span class="text-color-primary-marine-blue font-bold text-2xl">Thank you!</span>
+        <span class="text-color-primary-marine-blue font-bold text-2xl">Success!</span>
 
       </div>
       

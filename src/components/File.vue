@@ -1,6 +1,6 @@
 <script setup>
 import Stepper from './Stepper.vue';
-import ThankYou from './ThankYou.vue';
+import Success from './Success.vue';
 
 import {  useStore } from 'vuex';
 import { computed,onMounted } from 'vue';
@@ -35,7 +35,7 @@ onMounted(()=>{
     <div class=' coverflow-scroll w-full grid place-items-center bg-color-light-gray' >
 
                 <Stepper/>
-
+            
                 <template v-if="multiStep.step === 0">
                     <SelectField />
                 </template>
@@ -49,9 +49,9 @@ onMounted(()=>{
                 </template>
 
                 <template v-else-if="multiStep.step === 3"> 
-                    <ThankYou/>
+                    <Success/>
                     <!-- <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" /> -->
                 </template>
-
-    </div>
+            
+            </div>
 </template>
