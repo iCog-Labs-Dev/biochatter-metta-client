@@ -44,6 +44,12 @@ export default {
         state.step = payload
         localStorage.setItem('multistep', JSON.stringify(state))
     },
+    setDB(state, payload) {
+        state.dbname = payload
+    },
+    setentities(state, payload) {
+        state.entities = payload
+    }, 
     // saveStep(state,payload){
     //     return state = payload
     // }

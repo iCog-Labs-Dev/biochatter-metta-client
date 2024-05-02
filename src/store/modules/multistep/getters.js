@@ -14,9 +14,7 @@ export default {
     stepInfo(state) {
         return state.stepInfo
     },
-    // plan(state) {
-    //     return state.plan;
-    // },
+
     total(state) {
         return state.total;
     },

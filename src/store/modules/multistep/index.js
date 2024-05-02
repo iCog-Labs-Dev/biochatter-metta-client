@@ -29,12 +29,7 @@ export default {
             ],
             step: 0,
             dbname: "",
-            entities: [{
-
-            },{
-                
-            }],
-            addons: "",
+            entities: [{},{}],
             total: 0,
             isCompleted: false
     }
