@@ -3,12 +3,13 @@
 <script setup>
 // const{isVisible} = defineProps(['isVisible']) @click=" isVisible = !isVisible"  
 let {modelValue,title} = defineProps(['modelValue','title'])
+
 </script>
 
 <template>
     
-    <div class="backdrop backdrop-blur-[8px] w-full h-full absolute z-20">
-        <div class="modal my-10 flex flex-col overflow-hidden outline outline-1 outline-gray-500 bg-card bg-slate-900 backdrop-blur-[16px] text-white w-[90%] md:w-3/4 h-auto rounded-2xl absolute m-auto inset-0">
+    <div class="backdrop backdrop-blur-[8px] w-full h-full absolute z-20 border">
+        <div class="modal cmy-10 flex flex-col overflow-hidden outline outline-1 outline-gray-500 bg-card bg-slate-900 backdrop-blur-[16px] text-white w-[90%] md:w-[60%] rounded-2xl absolute m-auto inset-0 h-[80%]">
             <div class="flex justify-between items-center p-5 border-b border-gray-600 ">
                 <p class="font-bold text-2xl">{{title}}</p>
                 <fa class="self-end text-2xl hover:bg-white hover:text-black p-2 rounded-full aspect-square"

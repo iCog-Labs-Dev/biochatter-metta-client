@@ -1,5 +1,21 @@
-<script setup lang="ts">
-// import CheckImage from "../src/assets/icon-thank-you.svg";
+<script setup>
+
+import {  useStore } from 'vuex';
+import { computed,onMounted } from 'vue';
+import ButtonContainer from '../components/ButtonContainer.vue';
+
+const store = useStore();
+const multiStep = computed(() => store.state.multiStep);
+
+const handleSubmit = ()=>{
+    // const { planName, planAmount, planDuration} = planChoice.value
+
+    // if(planName && planAmount && planDuration){
+        store.dispatch("completeStep" )
+    // }else{
+    //     error.value =true
+    // }
+}
 </script>
 
 <template>
@@ -26,6 +42,9 @@
     </div>
   
   </div>
+
+  <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" />
+
 
 </template>
 <style></style>

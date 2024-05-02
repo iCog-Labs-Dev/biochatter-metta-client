@@ -1,6 +1,6 @@
 <script setup>
 import Stepper from './Stepper.vue';
-import Success from './Success.vue';
+import Success from '../views/Success.vue';
 
 import {  useStore } from 'vuex';
 import { computed,onMounted } from 'vue';
@@ -44,11 +44,11 @@ onMounted(()=>{
                     <SelectNodes />
                 </template>
 
-                <template v-else-if="multiStep.step === 2">
+                <!-- <template v-else-if="multiStep.step === 2">
                     <Confirm />
-                </template>
+                </template> -->
 
-                <template v-else-if="multiStep.step === 3"> 
+                <template v-else-if="multiStep.step === 2"> 
                     <Success/>
                     <!-- <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" /> -->
                 </template>

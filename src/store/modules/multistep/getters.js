@@ -11,9 +11,9 @@ export default {
     entities(state) {
         return state.plan;
     },
-    // addons(state) {
-    //     return state.addons
-    // },
+    stepInfo(state) {
+        return state.stepInfo
+    },
     // plan(state) {
     //     return state.plan;
     // },
