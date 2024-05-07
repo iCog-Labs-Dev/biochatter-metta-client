@@ -8,7 +8,9 @@ export default {
     mutations,
     actions,
     state() {
-        return {
+        const storedData = window.localStorage.getItem('multistep')
+
+        return storedData ? JSON.parse(storedData) : {
             stepInfo:[
                 {
                     stepNo: 1,

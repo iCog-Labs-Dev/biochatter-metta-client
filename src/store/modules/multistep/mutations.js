@@ -7,7 +7,6 @@ export default {
         switch(state.step){
             case 0:
                 state.dbname =  payload
-                
                 state.step = state.step + 1 
                 localStorage.setItem('multistep', JSON.stringify(state))
                 return
@@ -55,14 +54,14 @@ export default {
         localStorage.setItem('multistep', JSON.stringify(state))
 
     },
-    seek_step(state, payload) {
+    seekStep(state, payload) {
         state.step = payload
         localStorage.setItem('multistep', JSON.stringify(state))
     },
     setDB(state, payload) {
         state.dbname = payload
     },
-    setentities(state, payload) {
+    setEntities(state, payload) {
         state.entities = payload
     }, 
     // saveStep(state,payload){

@@ -2,9 +2,6 @@ export default {
     step(state) {
         return state.step;
     },
-    // multiStep(state) {
-    //     return state.step;
-    // },
     dbname(state) {
         return state.dbname;
     },

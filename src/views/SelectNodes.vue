@@ -41,9 +41,13 @@ const handleSubmit = ()=>{
 }
 
 onMounted(()=>{
-    store.dispatch('loadAtomspaces')
-    store.dispatch('loadSchema')
-    console.log(store.state)
+    console.log('multiStep',multiStep)
+    if(multiStep){
+
+        store.dispatch('loadAtomspaces')
+        store.dispatch('loadSchema')
+        console.log(store.state)
+    }
 })
 
 

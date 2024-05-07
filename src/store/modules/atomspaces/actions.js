@@ -7,7 +7,6 @@ const url = urls.atomspacesUrl;
 const schemaUrl = urls.schemaUrl;
 const errorHandler = utils.errorHandler;
 
-// export default {
 const loadAtomspaces = errorHandler(async(context) => {
     
     console.log("atomspace")
@@ -61,14 +60,11 @@ const submitSchema = errorHandler(async(context, data) =>{
 
     console.log(response)
 
-    // if (response.ok) {
-      const responseData = await response.json();
-      context.commit('res data', responseData);
-    // } else {
-    //   throw new Error('Failed to submit form');
-    // }
+      // const responseData = await response.json();
+      // context.commit('res data', responseData);
+    
   } catch (error) {
-    // console.error('Error submitting form:', error);
+    console.error('Error submitting form:', error);
     // throw error;
   }
 })

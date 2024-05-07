@@ -11,7 +11,7 @@ const proceedToNextStep = errorHandler(async (context, data) => {
 
 const seekStep = errorHandler(async (context, data) => {
   console.log("seek step", data)
-  context.commit("seek_step", data);
+  context.commit("seekStep", data);
  })
 
  const goToPrevStep = errorHandler(async (context) => {

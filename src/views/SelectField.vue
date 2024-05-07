@@ -35,27 +35,7 @@ const createSchema = () => {
 
 <template>
 
-    <!-- <p>Select Field</p> -->
     <div class="w-full h-96 cpy-10 text-center relative flex flex-col gap-5">
-        
-        <!-- <div v-if="newSchema"
-        class="cborder border-green-400 w-full h-fit flex items-center cjustify-evenly m-auto p-5 inset-0 absolute">
-
-            <label for="schema"
-            class="cbg-white cursor-pointer text-white chover:text-white chover:bg-black/30 capitalize w-fit  mx-auto px-5 py-3 crounded-full">
-                Upload Schema
-            </label>
-
-            
-            <input class="chidden border" id="schema" type="file" />
-
-            <button 
-                @click="handleSubmit"
-                class="bg-white text-black hover:text-white hover:bg-black/30 capitalize w-fit  mx-auto px-5 py-3 rounded-full cursor-pointer">
-                Upload
-            </button>
-            
-        </div> -->
     
         <div>
                 <p class="cbg-white text-white w-full p-2 mt-5 text-xl text-start bg-gray-700 mb-5">List of databse's</p>
