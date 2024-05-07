@@ -9,12 +9,14 @@ export default {
         return state.dbname;
     },
     entities(state) {
-        return state.plan;
+        return state.entities;
     },
     stepInfo(state) {
         return state.stepInfo
     },
-
+    formData(state) {
+        return state.formData
+    },
     total(state) {
         return state.total;
     },

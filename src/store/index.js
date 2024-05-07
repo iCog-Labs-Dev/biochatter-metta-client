@@ -3,13 +3,15 @@ import chatListModule from "./modules/chatlist/index";
 import topicsModule from "./modules/topics/index";
 import statusModule from "./modules/status/index";
 import multiStepModule from "./modules/multistep/index";
+import atomspacesModule from "./modules/atomspaces/index";
 
 const store = createStore({
     modules: {
         chat: chatListModule,
         topics:topicsModule,
         status:statusModule,
-        multiStep: multiStepModule
+        multiStep: multiStepModule,
+        atomspaces: atomspacesModule,
     }
 });
 

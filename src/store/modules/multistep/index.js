@@ -29,10 +29,10 @@ export default {
             ],
             step: 0,
             dbname: "",
-            entities: [{},{}],
+            entities: null,
+            formData: null,
             total: 0,
             isCompleted: false
+            }
+        }
     }
-    },
-
-}

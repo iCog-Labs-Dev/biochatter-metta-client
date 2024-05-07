@@ -44,9 +44,6 @@ onMounted(()=>{
                     <SelectNodes />
                 </template>
 
-                <!-- <template v-else-if="multiStep.step === 2">
-                    <Confirm />
-                </template> -->
 
                 <template v-else-if="multiStep.step === 2"> 
                     <Success/>

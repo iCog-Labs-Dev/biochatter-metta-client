@@ -10,8 +10,10 @@ export default {
     // nameSpaced: true,
     state() {
         return {
-            submittedForms: [],
-            topics:null
-        } 
+            atomspaces: [],
+            schema:'fff'
+        }
+       
     },
+
 }

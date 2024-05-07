@@ -72,7 +72,6 @@ const startNewChat = errorHandler(async(context,data)=>{
     
   })
 
-
 const sendChat= errorHandler(async (context,data) => {
 
       let user_question = {

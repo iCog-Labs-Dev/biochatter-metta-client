@@ -1,26 +1,41 @@
+import store from "../../index";
+
 export default {
 
     proceedToNextStep(state, payload) {
-        console.log('state',state)
-        console.log('payload',payload)
-
-        switch(payload){
-            case "dbname":
+        let formData = new FormData();
+        switch(state.step){
+            case 0:
                 state.dbname =  payload
-                state. step = state.step + 1 
+                
+                state.step = state.step + 1 
                 localStorage.setItem('multistep', JSON.stringify(state))
                 return
-
-            case "entities":
+                
+                case 1:
                 state.entities =  payload 
+                console.log("entities",state.entities)
+                const {node_metta_file, edge_metta_file, nodes, edges} = payload
+                
+                formData.append('db_name',state.dbname)
+                formData.append('node_metta_file', node_metta_file)
+                formData.append('edge_metta_file', edge_metta_file)
+                formData.append('nodes', nodes)
+                formData.append('edges', edges)
+
+                state.formData = formData
+            
                 state.step = state.step + 1 
                 localStorage.setItem('multistep', JSON.stringify(state))
                 return
 
-            case "confirm":
-                state.addons = payload
-                state.step = state.step + 1 
-                localStorage.setItem('multistep', JSON.stringify(state))
+            case 2:
+                console.log("sdfsdf")
+
+
+                // state.addons = payload
+                // state.step = state.step + 1 
+                // localStorage.setItem('multistep', JSON.stringify(state))
                return
 
             default:
