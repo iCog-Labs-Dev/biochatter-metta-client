@@ -21,16 +21,10 @@ const handleSubmit = ()=>{
 <template>
   <div class="flex flex-col w-full h-full">
     
-    <div class="mt-0 flex flex-col gap-y-7 h-full justify-center items-center">
+    <div class="flex flex-col gap-y-4 h-full justify-center items-center p-20">
       
       <div>
-        <!-- <img :src="CheckImage" alt="" /> -->
-      </div>
-      
-      <div>
-        
         <span class="text-color-primary-marine-blue font-bold text-2xl">Success!</span>
-
       </div>
       
       <div>

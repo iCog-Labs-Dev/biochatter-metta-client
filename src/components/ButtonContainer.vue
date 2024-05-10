@@ -18,7 +18,7 @@ const fireEmitter = ()=>{
 </script>
 
 <template>
-    <div className='bg-white text-black absolute bottom-0 w-full right-0 left-0'>
+    <div className='bg-white p-2 text-black absolute bottom-0 w-full right-0 left-0 z-50'>
         <div className='flex w-full gap-x-6 justify-between items-center px-6 h-full'>
 
             <template v-if="step > 0 && step <= 3">

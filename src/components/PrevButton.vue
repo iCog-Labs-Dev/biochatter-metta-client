@@ -10,7 +10,7 @@ const store = useStore();
 
 <template>
     <div>
-        <button class="text-color-cool-gray hover:text-color-primary-marine-blue" @click="store.dispatch('goToPrevStep')">
+        <button class="hover:bg-gray-400 rounded-2xl px-2 text-color-cool-gray hover:text-color-primary-marine-blue" @click="store.dispatch('goToPrevStep')">
         Go Back
         </button>
       </div>

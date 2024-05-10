@@ -8,47 +8,39 @@ const multiStep = computed(() => store.state.multiStep);
 var dbname = ref('')
 var newSchema = ref(false)
 
-const handleSubmit = (e)=>{
-
-    if (e.target.textContent){
-        const data = e.target.textContent.trim()
-        store.dispatch("proceedToNextStep", data)
+const handleSubmit = (e) => {
+    if (dbname.value !== null && dbname.value !== "" && dbname.value !== undefined) {
+        console.log('its db name');
+        console.log("dbname", dbname.value);
+        store.dispatch("proceedToNextStep", dbname.value);
+    } else if (e && e.target.textContent.trim() !== "") {
+        console.log('its e');
+        const data = e.target.textContent.trim();
+        store.dispatch("proceedToNextStep", data);
     }
-    else if ( dbname !== null){
-        console.log("dbname",dbname.value)
-        store.dispatch("proceedToNextStep", dbname.value)
-    }
-        newSchema =  true
+    newSchema = false;
 }
 
-const createSchema = () => {
-    console.log("handle schema")
-    newSchema = !newSchema
-    // if (!newSchema){
-    //     (newSchema =  true) 
-    // }     
-    // else{
-    //     handleSubmit()
-    // }
-}
 </script>
 
 <template>
 
-    <div class="w-full h-96 cpy-10 text-center relative flex flex-col gap-5">
+    <div class="w-full h-96 cpy-10 text-center relative flex flex-col ">
     
-        <div>
-                <p class="cbg-white text-white w-full p-2 mt-5 text-xl text-start bg-gray-700 mb-5">List of databse's</p>
+        <!-- <div> -->
+                <p class="cbg-white bg-white text-black w-full p-2 text-xl text-start mb-5">List of databse's</p>
                 
-                <div class="flex h-fit flex-wrap gap-5 justify-center overflow-y-scroll cborder">
+                <div class="flex h-fit flex-wrap gap-5 p-4 pb-16 justify-start overflow-y-scroll ">
+                    
                     <button 
                     @click="(e)=>handleSubmit(e)"
                     v-for="i in 1" 
                     class="cbg-white p-2 px-5   text-start bg-white text-black rounded-full crounded-full hover:text-white hover:bg-white/30 ">
                         Genecode
                     </button>
+
                 </div>
-        </div>
+        <!-- </div> -->
 
     </div>
 
@@ -83,7 +75,7 @@ const createSchema = () => {
 
         <div
         v-if="newSchema"
-        @click="handleSubmit"
+        @click="handleSubmit()"
         class="cbg-blue-500 cursor-pointer input-style w-16 aspect-square rounded-full cabsolute bottom-20 right-10 flex items-center justify-center">
         
             <fa class="text-xl text-white" icon='arrow-right' />

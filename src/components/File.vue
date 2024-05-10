@@ -32,7 +32,7 @@ onMounted(()=>{
 </script>
 
 <template>
-    <div class=' coverflow-scroll w-full grid place-items-center bg-color-light-gray' >
+    <div class='coverflow-scroll flex flex-col cflex-1 w-full bg-color-light-gray outline outline-red-500 h-max relative transition-transform duration-700' >
 
                 <Stepper/>
             
@@ -44,11 +44,13 @@ onMounted(()=>{
                     <SelectNodes />
                 </template>
 
-
                 <template v-else-if="multiStep.step === 2"> 
                     <Success/>
                     <!-- <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" /> -->
                 </template>
+
+                    <!-- <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" /> -->
+
             
             </div>
 </template>
