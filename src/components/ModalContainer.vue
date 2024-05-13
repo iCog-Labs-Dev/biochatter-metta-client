@@ -1,7 +1,6 @@
-<!-- v-if="isModalSettings" @click="(event) => {isModalSettings = false;}"  -->
 
 <script setup>
-// const{isVisible} = defineProps(['isVisible']) @click=" isVisible = !isVisible"  
+
 let {modelValue,title} = defineProps(['modelValue','title'])
 
 </script>

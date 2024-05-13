@@ -22,6 +22,11 @@ watch(()=> route.params.id, (newId,oldId) => {
   store.dispatch('getChat',{chat_id: route.params.id})
 })
 
+    /**
+     * Sends a chat message.
+     *
+     * @return {void} No return value.
+     */
 const sendChat = () =>{
   let msg = chatInput.value.value
   store.dispatch('sendChat',{msg,chat_id: route.params.id})
@@ -33,7 +38,7 @@ const sendChat = () =>{
   <!-- conversatons -->
   <div class="w-full h-full flex-col-reverse overflow-y-scroll flex gap-5 p-10 pb-32">
 
-    <!-- message-out -->
+    <!-- message-bubbles -->
     <!-- :src="i.is_user_message ? './../assets/logo.png' : './../assets/logo.png'" -->
     <div 
     v-if="chat.length >= 0"
@@ -60,6 +65,8 @@ const sendChat = () =>{
             
             </p>
         </div>
+
+        <!-- input field -->
         <div 
         class="group w-3/4 flex items-center absolute bottom-[50px] left-1/2 -translate-x-1/2">
             <input 
@@ -75,4 +82,5 @@ const sendChat = () =>{
              
             </input>
         </div>
+
 </template>

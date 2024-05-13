@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import chatListModule from "./modules/chatlist/index";
-import topicsModule from "./modules/topics/index";
+import examplesModule from "./modules/examples/index";
 import statusModule from "./modules/status/index";
 import multiStepModule from "./modules/multistep/index";
 import atomspacesModule from "./modules/atomspaces/index";
@@ -8,7 +8,7 @@ import atomspacesModule from "./modules/atomspaces/index";
 const store = createStore({
     modules: {
         chat: chatListModule,
-        topics:topicsModule,
+        example:examplesModule,
         status:statusModule,
         multiStep: multiStepModule,
         atomspaces: atomspacesModule,

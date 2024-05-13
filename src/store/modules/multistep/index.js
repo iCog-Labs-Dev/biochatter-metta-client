@@ -7,10 +7,15 @@ export default {
     getters,
     mutations,
     actions,
+    /**
+     * Returns the initial state object with properties.
+     *
+     * @return {Object} The initial state object with properties
+     */
     state() {
         const storedData = window.localStorage.getItem('multistep')
 
-        return storedData ? JSON.parse(storedData) : {
+        return  {
             stepInfo:[
                 {
                     stepNo: 1,
@@ -18,23 +23,24 @@ export default {
                 },
                 {
                     stepNo: 2,
-                    stepDesc: 'upload Files for entities'
+                    stepDesc: 'Upload Schema Files'
                 },
                 {
                     stepNo: 3,
-                    stepDesc: 'Success'
+                    stepDesc: 'Confirm'
                 },
-                // {
-                //     stepNo: 4,
-                //     stepDesc: 'Results'
-                // },
             ],
             step: 0,
             dbname: "",
             entities: null,
             formData: null,
             total: 0,
-            isCompleted: false
+            upload:{
+                uploading: false,
+                success: false,
+
+                
+            }
             }
         }
     }

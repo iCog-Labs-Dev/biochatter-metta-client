@@ -16,7 +16,7 @@ const fireEmitter = ()=>{
 
 <template>
     <div>
-        <button @click="fireEmitter" class='hover:bg-gray-400 outline-none px-2 rounded-2xl hover:text-color-primary-light-blue'> {{step === 3 ? 'Confirm' : 'Next Step'}}  </button>
+        <button @click="fireEmitter" class='hover:bg-gray-400 outline-none px-2 rounded-2xl hover:text-color-primary-light-blue'> {{step === 1 ? 'Upload' : 'Next Step'}}  </button>
     </div>
 </template>
 

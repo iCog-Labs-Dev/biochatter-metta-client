@@ -1,17 +1,20 @@
 import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
-// import axios from 'axios'
 
 export default {
     getters,
     mutations,
     actions,
-    // nameSpaced: true,
+    /**
+     * Returns the initial state object with properties.
+     *
+     * @return {Object} The initial state object with properties
+     */
     state() {
         return {
             atomspaces: [],
-            schema:'fff'
+            schema:''
         }
        
     },

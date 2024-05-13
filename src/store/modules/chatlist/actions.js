@@ -6,6 +6,12 @@ import { useRoute } from "vue-router";
 const url = urls.chatUrl;
 const errorHandler = utils.errorHandler;
 
+    /**
+     * Loads the chat list from the server and commits it to the Vuex store.
+     *
+     * @param {Object} context - The Vuex context object.
+     * @return {Promise<void>} A promise that resolves when the chat list is loaded and committed.
+     */
 const loadChatList= errorHandler(async (context) => { 
     const response = await axios({
       method: "get",
@@ -14,7 +20,16 @@ const loadChatList= errorHandler(async (context) => {
     context.commit("saveChatList", response.data.results);
   })
 
-const delChat= errorHandler(async (context,data) => {
+/**
+ * Deletes a chat by its ID and removes it from the state.
+ *
+ * @param {Object} context - The Vuex context object.
+ * @param {Object} data - The data object containing the chat ID and index.
+ * @param {string} data.id - The ID of the chat to delete.
+ * @param {number} data.index - The index of the chat in the state.
+ * @return {Promise<void>} A promise that resolves when the chat is deleted and removed from the state.
+ */
+const delChat= async (context,data) => {
 
     console.log("del chat")
     console.log(url)
@@ -24,8 +39,15 @@ const delChat= errorHandler(async (context,data) => {
       url:url + data.id,
     });
     context.commit('remChat',data.index)
-  })
+  }
 
+  /**
+ * Starts a new chat by sending a message and navigating to the chat page.
+ *
+ * @param {Object} context - The Vuex context object.
+ * @param {string} data - The message text to send in the new chat.
+ * @return {Promise} A promise that resolves when the new chat is started.
+ */
 const startNewChat = errorHandler(async(context,data)=>{
   const router = useRoute()
 
@@ -72,6 +94,13 @@ const startNewChat = errorHandler(async(context,data)=>{
     
   })
 
+/**
+ * Sends a chat message.
+ *
+ * @param {Object} context - The Vuex context object.
+ * @param {Object} data - The data object containing the chat message.
+ * @return {Promise} A promise that resolves when the chat message is sent.
+ */
 const sendChat= errorHandler(async (context,data) => {
 
       let user_question = {
@@ -93,15 +122,17 @@ const sendChat= errorHandler(async (context,data) => {
     console.log('response',response)
     context.commit("appendChat", response.data.llm_response);
     context.commit("toggleWait",false);  
-  // }
-    // catch(error){
-      // const {data,status,statusText} = error.response
-      // context.commit("toggleWait");
-      // store.dispatch('newStatus',{data,status,statusText})
-    // }
   })
 
-const getChat= errorHandler(async (context,data) => {
+  /**
+ * Retrieves a chat by its ID and saves it to the state.
+ *
+ * @param {Object} context - The Vuex context object.
+ * @param {Object} data - The data object containing the chat ID.
+ * @param {string} data.chat_id - The ID of the chat to retrieve.
+ * @return {Promise<void>} A Promise that resolves when the chat is retrieved and saved.
+ */
+const getChat= (async (context,data) => {
 
     const response = await axios({
       method: "get",

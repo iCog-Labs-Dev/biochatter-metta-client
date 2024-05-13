@@ -5,7 +5,7 @@ import { computed, onMounted,ref } from 'vue'
 const store = useStore()
 let chatInput = ref(null);
 
-const topics = computed(() => store.state.topics)
+const examples = computed(() => store.state.examples)
 
 const startNewChat = (data) => {
 
@@ -24,17 +24,18 @@ const startNewChat = (data) => {
 
 onMounted(() => {
   console.log("mounted")
-  store.dispatch('loadTopics');
-  console.log('topics',topics)
+  store.dispatch('loadExamples');
+  console.log('Examples',examples)
 })
 
 </script>
 
 <template>
+    <!-- topic list -->
     <div class="w-full h-fit flex flex-wrap justify-start gap-10 items- p-10 cbg-red-600">
         <div 
-        v-if="topics"
-        v-for="i in topics.topics"
+        v-if="examples"
+        v-for="i in examples.examples"
         @click="startNewChat(i.example_text)"
         class="card input-style relaive items-end  overflow-hidden hover:bg-white hover:text-black  cursor-pointer
                group  transition-all duration-700 rounded-2xl p-4">

@@ -7,11 +7,9 @@ export default {
     getters,
     mutations,
     actions,
-    // nameSpaced: true,
     state() {
         return {
-            submittedForms: [],
-            topics:null
+            examples:[]
         } 
     },
 }
