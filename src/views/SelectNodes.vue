@@ -11,8 +11,9 @@ const atomspaces = computed(() => store.state.atomspaces);
 const nodes = computed(() => store.state.atomspaces.schema.nodes);
 const edges = computed(() => store.state.atomspaces.schema.edges);
 
-const selectedNodes = ref(Array(nodes.length).fill(false));
-const selectedEdges = ref(Array(edges.length).fill(false));
+const selectedNodes = ref(Array.from({ length: nodes.length }, () => false));
+const selectedEdges = ref(Array.from({ length:edges.length} , () => false));
+const selectNodes = ref(null);
 
 const selectedNodeFile = ref('sdfsdf');
 const selectedEdgeFile = ref(null);
@@ -22,7 +23,6 @@ const handleSubmit = ()=>{
 
     let nodeList = []
     let edgeList = []
-
 
     // check for any selected entities
     // dont upload if none are selected
@@ -55,7 +55,7 @@ const handleSubmit = ()=>{
     let validNode = validateEntity(selectedNodes,selectedNodeFile)
     let validEdge = validateEntity(selectedEdges,selectedEdgeFile)
 
-    if(!validNode){ 
+    if(!validNode){
         store.dispatch('newStatus',
         {
             statusText:'Please add a node file corresponding to your selected nodes'
@@ -80,43 +80,50 @@ const handleSubmit = ()=>{
             edges:(validEdge?JSON.stringify(edgeList):null),
             })
 
-            console.log(multiStep.value.formData)
         store.dispatch('submitAtomspaces',multiStep.value.formData)
     }
 }
 
+// const selectAllNodes = computed({
+//       get: () => selectedNodes.value.every(node => node === true),
+//       set: (value) => {
+//         selectedNodes.value = selectedNodes.value.map(() => true);
+//       }
+//     });
+
+// watch(() => selectNodes, () => {
+//     selectAllNodes.value = selectedNodes.value.every(node => node === true);
+// });
+
+// const selectAll = () => {
+//     selectedEdges
+// }
+
 onMounted(()=>{
        store.dispatch('loadAtomspaces')
-        store.dispatch('loadSchema')
-        console.log('multiStep',atomspaces.schema)
-        console.log(store.state)
+       store.dispatch('loadSchema')
+
 })
+
 </script>
 
 <template>
 
-        <div class="w-full sticky divide-x top-0 flex outline outline-1 justify-start">
+        <div class="w-full sticky divide-x top-0 flex justify-start">
 
                 <label 
-                    v-for="(i, index) in ['Select All Nodes', 'Select All Edges']" 
+                    v-for="(i, index) in ['Nodes', 'Edges']" 
                     :for="i"  
                     class=" w-full outlin p-5">
-                        
-                    <input 
-                        type="checkbox"
-                        :checked="true"
-                        class="check-box"
-                        :id="i" 
-                    />
                     <p> {{i}} </p>    
                 </label>
 
         </div>
 
         <div class="w-full flex flex-row flex-1">
-            
+     
             <!-- node list -->
-            <div v-for="(i) in ['nodes']" class=" flex-1 relative">
+            <div v-for="(i) in ['nodes']" class=" flex-1 relative border-r-1">
 
                 <!-- list -->
                 <div class="overflow-y-scroll h-[150px] md:h-[400px]  pb-10">
@@ -125,7 +132,6 @@ onMounted(()=>{
 
                         <label 
                         :for="'node_' + index"
-                        
                         class="cursor-pointer hover:bg-white/30 h-full flex justify-start w-full coutline outline-1 outline-white px-5 py-3">
                             <input 
                             type="checkbox"
@@ -134,9 +140,9 @@ onMounted(()=>{
                             v-model="selectedNodes[index]"
                             :id="'node_' + index"
                             >
-                            
+
                             <p> {{j}} </p>
-                            
+
                         </label>
 
                     </div>
@@ -161,7 +167,7 @@ onMounted(()=>{
             </div>
 
             <!-- edge list -->
-            <div v-for="(i) in ['edges']" class="flex-1 relative border border-1">
+            <div v-for="(i) in ['edges']" class="flex-1 relative cborder">
 
                 <!-- list -->
                 <div class="overflow-y-scroll h-[150px] md:h-[400px]  pb-10">
@@ -171,12 +177,11 @@ onMounted(()=>{
                         <label
                         :for="'edge_' + index"
                         class="cursor-pointer hover:bg-white/30 h-full flex justify-start w-full coutline outline-1 outline-white px-5 py-3">
-                            
+    
                             <input 
                             type="checkbox"
                             class="mr-5 check-box" 
                             name="" 
-                            @click="console.log(`${selectedEdges[index]}`)"
                             v-model="selectedEdges[index]"
                             :id="'edge_' + index"
                             >
@@ -202,13 +207,13 @@ onMounted(()=>{
                     :id="'edge_file'">
 
                     <fa class="text-white h-6 p-2 cursor-pointer" icon="folder" />
-                  
+
                 </label>
 
             </div>
 
         </div>
-    
+
     <ButtonContainer :step="multiStep.step" @nextAction="handleSubmit" />
 
 </template>

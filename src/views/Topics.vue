@@ -5,12 +5,11 @@ import { computed, onMounted,ref } from 'vue'
 const store = useStore()
 let chatInput = ref(null);
 
-const examples = computed(() => store.state.examples)
+const examples = computed(() => store.state.example)
 
 const startNewChat = (data) => {
 
     if (data){
-        
         // alert(data)
         store.dispatch('startNewChat',data)
         // return
@@ -23,9 +22,9 @@ const startNewChat = (data) => {
 }
 
 onMounted(() => {
-  console.log("mounted")
+  console.log("mounted");
   store.dispatch('loadExamples');
-  console.log('Examples',examples)
+  console.log('Examples',examples);
 })
 
 </script>
@@ -33,7 +32,7 @@ onMounted(() => {
 <template>
     <!-- topic list -->
     <div class="w-full h-fit flex flex-wrap justify-start gap-10 items- p-10 cbg-red-600">
-        <div 
+        <div
         v-if="examples"
         v-for="i in examples.examples"
         @click="startNewChat(i.example_text)"

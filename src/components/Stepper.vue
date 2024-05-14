@@ -13,11 +13,11 @@ const multiStep = computed(() => store.state.multiStep);
         <div class='bg-gray-700 py-4 px-7 '>
 
           <!-- <Steps/> -->
+          <!--             @click="true && store.dispatch('seekStep',(stp.stepNo -1))" -->
 
     <div class='flex xlg:flex-col items-center gap-y-7 w-full h-full justify-around gap-x-5  xlg:gap-x-0 '>
         <div
             v-for="stp of multiStep.stepInfo" :key="stp.stepNo" 
-            @click="true && store.dispatch('seekStep',(stp.stepNo -1)) "
             class="flex flex-col justify-center items-center text-center gap-x-4">
 
             <div class="p-5 w-9 h-9 border-2 flex items-center justify-center   rounded-full font-medium text-lg"
