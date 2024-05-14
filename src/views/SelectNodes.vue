@@ -73,13 +73,14 @@ const handleSubmit = ()=>{
         validEdge?selectedEdges._rawValue.map((_,index)=>{ edgeList.push(edges.value[index])}):''
     
         store.dispatch("proceedToNextStep",{
-            node_metta_file:(validNode?selectedNodeFile.value[0].files[0]:undefined),
-            nodes:(validNode?JSON.stringify(nodeList):undefined),
+            node_metta_file:(validNode?selectedNodeFile.value[0].files[0]:null),
+            nodes:(validNode?JSON.stringify(nodeList):null),
 
-            edge_metta_file:(validEdge?selectedEdgeFile.value[0].files[0]:undefined),
-            edges:(validEdge?JSON.stringify(edgeList):undefined),
+            edge_metta_file:(validEdge?selectedEdgeFile.value[0].files[0]:null),
+            edges:(validEdge?JSON.stringify(edgeList):null),
             })
 
+            console.log(multiStep.value.formData)
         store.dispatch('submitAtomspaces',multiStep.value.formData)
     }
 }

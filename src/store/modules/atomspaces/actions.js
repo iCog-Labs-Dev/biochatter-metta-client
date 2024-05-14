@@ -53,23 +53,21 @@ const loadSchema = errorHandler(async(context) => {
  * @return {Promise} A promise that resolves when the data is submitted successfully.
  */
 const submitAtomspaces = errorHandler(async(context, data) =>{
-  console.log({store})
-  console.log('ctx.dispatch',context.dispatch)
 
-    // try {
-    //   // const response = await axios({
-    //   //   method: 'post',
-    //   //   url: url,
-    //   //   data: data
-    //   // });
-    //   context.dispatch('toggleUploadStatus',{uploading:false,success:true})
+    try {
+      const response = await axios({
+        method: 'post',
+        url: url,
+        data: data
+      });
+      store.dispatch('toggleUploadStatus',{uploading:false,success:true})
 
-    // } catch (error) {
-      store.dispatch('toggleUploadStatus',{uploading:true,success:false})
+    } catch (error) {
+      store.dispatch('toggleUploadStatus',{uploading:false,success:false})
       store.dispatch('newStatus',({statusText:'upload failed'}))
-      // console.error('Error submitting form:', error.message);
-      // throw error;
-    // }
+      console.error('Error submitting form:', error.message);
+      throw error;
+    }
   })
 
 /**

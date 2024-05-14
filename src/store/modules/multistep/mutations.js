@@ -11,7 +11,7 @@ export default {
  */
     toggleUploadStatus(state,payload) {
         console.log(payload)
-        state = payload
+        state.upload = payload
     },
     /**
      * Proceeds to the next step based on the current state.
@@ -61,13 +61,13 @@ export default {
                 break;
         }
     },
-        /**
-         * Decrements the step value in the state by 1 and updates the 'multistep'
-         * item in localStorage with the updated state.
-         *
-         * @param {object} state - The Vuex state object.
-         * @return {void}
-         */
+    /**
+     * Decrements the step value in the state by 1 and updates the 'multistep'
+     * item in localStorage with the updated state.
+     *
+     * @param {object} state - The Vuex state object.
+     * @return {void}
+     */
     goToPrevStep(state) {
         state.step = state.step - 1
         localStorage.setItem('multistep', JSON.stringify(state))
