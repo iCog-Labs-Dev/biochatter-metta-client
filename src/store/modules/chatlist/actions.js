@@ -49,7 +49,7 @@ const delChat= async (context,data) => {
  * @return {Promise} A promise that resolves when the new chat is started.
  */
 const startNewChat = errorHandler(async(context,data)=>{
-  const router = useRoute()
+  // const router = useRoute()
 
     console.log("startNewChat")
     // console.log('data',data)
@@ -77,7 +77,7 @@ const startNewChat = errorHandler(async(context,data)=>{
         message_updated_at: new Date().now,
       }
       context.commit("appendChat", user_question);
-    router.push({ name: 'chat', params: { id: chat_record.id } })
+    // router.push({ name: 'chat', params: { id: chat_record.id } })
     
     response = await axios({
       method: "post",
