@@ -37,7 +37,7 @@ onMounted(()=>{
   store.dispatch('loadChatList')
 
   console.log(scrollToTop.value.clientHeight,'scroll height')
-  scrollToTop.value.scrollTo(-scrollToTop.value.clientHeight, 0);
+  scrollToTop.value.scrollTo(-scrollToTop.value.clientHeight, -scrollToTop.value.clientHeight);
 })
 
 
