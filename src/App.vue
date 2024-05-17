@@ -2,7 +2,7 @@
 <script setup>
 import {  useStore } from 'vuex';
 
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { computed,onMounted } from 'vue';
 
 import utils from './utils';
@@ -17,6 +17,8 @@ let show = ref(false);
 let isModalSettings = ref(false);
 let isModalFile = ref(false);
 let isModalHelp = ref(false);
+
+let scrollToTop = ref(null);
 
 const {dateFormatter} = utils
 
@@ -33,18 +35,11 @@ const deleteChat = (data) =>{
 
 onMounted(()=>{
   store.dispatch('loadChatList')
-  // store.dispatch('saveStep')
-  // saveSteps
-  console.log('chatList',chatList)
-  console.log('status',status.isPresent)
-  // console.log('multiStep',kk.multiStep)
-  // console.log('store',store)
-  // console.log('store',store.commit("proceedToNextStep","plan"))
+
+  console.log(scrollToTop.value.clientHeight,'scroll height')
+  scrollToTop.value.scrollTo(-scrollToTop.value.clientHeight, 0);
 })
 
-// const throwError = () => {
-//   store.dispatch('newStatus','sdfsdf')
-// }
 
 
 </script>
@@ -110,7 +105,9 @@ onMounted(()=>{
 
   
       <!-- chat list -->
-        <div class="cont boutline items-center outline-1 flex flex-col-reverse flex-1 overflow-y-scroll [scrollbar-width:none] overflow-x-hidden h-5/6">
+        <div 
+        ref="scrollToTop"
+        class="cont boutline items-center outline-1 flex flex-col-reverse flex-1 overflow-y-scroll [cscrollbar-width:none] overflow-x-hidden h-5/6">
           <router-link class="w-full" v-for="(i,index) in chatList.chatList" :to="{name:'chat', params:{id:i.id}}">
             <div class="card p-3 text-center md:text-start hover:bg-white/40 ">
               

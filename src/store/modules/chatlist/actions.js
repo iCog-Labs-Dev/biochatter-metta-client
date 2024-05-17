@@ -1,10 +1,12 @@
 import axios from "axios";
 import urls from "../../../urls/index.js"
 import utils from "../../../utils/index.js"
-import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
+import {router} from "../../../main.js"
 
 const url = urls.chatUrl;
 const errorHandler = utils.errorHandler;
+// let router = useRouter()
 
     /**
      * Loads the chat list from the server and commits it to the Vuex store.
@@ -48,15 +50,12 @@ const delChat= async (context,data) => {
  * @param {string} data - The message text to send in the new chat.
  * @return {Promise} A promise that resolves when the new chat is started.
  */
-const startNewChat = errorHandler(async(context,data)=>{
-  // const router = useRoute()
+const startNewChat = async(context,data)=>{
 
     console.log("startNewChat")
-    // console.log('data',data)
     console.log('data',data)
     let response = await axios({
       method: "post",
-      // url:url + data.id + '/chats/',
       url:url ,
       data:{
         message_text:data
@@ -69,30 +68,58 @@ const startNewChat = errorHandler(async(context,data)=>{
     console.log(response.data);
     const {chat_record} = (response.data);
     context.commit("appendChatList", chat_record);
-    console.log('undef', data)
 
-      let user_question = {
-        is_user_message: true,
-        message_text: data,
-        message_updated_at: new Date().now,
-      }
-      context.commit("appendChat", user_question);
-    // router.push({ name: 'chat', params: { id: chat_record.id } })
+    router.push({ name: 'chat', params: { id: chat_record.id } })
     
-    response = await axios({
-      method: "post",
-      // url:url + data.id + '/chats/',
-      url: url + chat_record.id + '/messages/',
-      data:{
-        message_text:data
-      }
-    });
-    const {user_record,llm_record} = (response.data);
-    context.commit("appendChat", llm_record);
+     // let user_question = {
+     //     is_user_message: true,
+     //     message_text: data,
+     //     message_updated_at: new Date().now,
+     // }
+     
+    
+    // setTimeout(() => {
+    //   context.commit("appendChat", user_question);
+      
+    // },2000)
+    // response = await axios({
+    //   method: "post",
+    //   // url:url + data.id + '/chats/',
+    //   url: url + chat_record.id + '/messages/',
+    //   data:{
+    //     message_text:data
+    //   }
+    // });
+    // const {user_record,llm_record} = (response.data);
+    // context.commit("appendChat", llm_record);
+   sendChat(context,{msg:data, chat_id:chat_record.id})
+    // // context.commit("saveTopics", response.data.results);
+    
+  }
 
-    // context.commit("saveTopics", response.data.results);
-    
-  })
+const getNewChatResponse = errorHandler(async(context,data)=>{
+  let user_question = {
+    is_user_message: true,
+    message_text: data,
+    message_updated_at: new Date().now,
+  }
+  context.commit("appendChat", user_question);
+// router.push({ name: 'chat', params: { id: chat_record.id } })
+
+response = await axios({
+  method: "post",
+  // url:url + data.id + '/chats/',
+  url: url + chat_record.id + '/messages/',
+  data:{
+    message_text:data
+  }
+});
+const {user_record,llm_record} = (response.data);
+context.commit("appendChat", llm_record);
+
+// context.commit("saveTopics", response.data.results);
+
+})
 
 /**
  * Sends a chat message.
@@ -103,11 +130,12 @@ const startNewChat = errorHandler(async(context,data)=>{
  */
 const sendChat= errorHandler(async (context,data) => {
 
-      let user_question = {
-        is_user_message: true,
-        message_text: data.msg,
-        message_updated_at: new Date().now,
-      }
+    let user_question = {
+      is_user_message: true,
+      message_text: data.msg,
+      message_updated_at: new Date().now,
+    }
+
     context.commit("appendChat", user_question);
     console.log('waiting...')
     context.commit("toggleWait", true);
@@ -146,5 +174,5 @@ const getChat= (async (context,data) => {
 // };
 
 export default {
-  loadChatList,delChat,sendChat,getChat,startNewChat
+  loadChatList,delChat,sendChat,getChat,startNewChat, getNewChatResponse
 }

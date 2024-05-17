@@ -30,4 +30,7 @@ const router = createRouter({
     ],
   })
 
-app.use(store).use(router).mount('#app')
+
+app.use(router).use(store).mount('#app')
+
+export {router} // for use in store

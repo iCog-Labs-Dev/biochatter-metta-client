@@ -14,16 +14,16 @@
       @apply text-white bg-white/10 backdrop-blur-md backdrop-filter outline-none border-[2px] border-white;
     }
     .chat-in{
-      @apply flex gap-2;
+      @apply flex gap-2 ;
     }
     .chat-out{
-      @apply flex-row-reverse ;
+      @apply flex-row-reverse w-1/2;
     }
     .chat-image{
       @apply bg-white aspect-square rounded-full h-fit p-1 w-10;
     }
     .chat-message{
-      @apply input-style w-fit rounded-2xl px-3;
+      @apply input-style w-3/4 rounded-2xl bg-gray-700/40 p-3 border-none;
     }
     .check-box{
       @apply relative float-left mr-5 mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid outline-none 

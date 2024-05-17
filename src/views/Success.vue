@@ -40,7 +40,6 @@ const handleSubmit = ()=>{
           'Upload was successfull!' :
           ' Something went wrong during your upload, Please try again '
           }}
-            
           </p>
         </div>
         

@@ -1,8 +1,13 @@
 <script setup>
+
 import { useStore } from 'vuex'
+import { useRouter } from "vue-router";
 import { computed, onMounted,ref } from 'vue'
 
 const store = useStore()
+
+const router = useRouter()
+
 let chatInput = ref(null);
 
 const examples = computed(() => store.state.example)
@@ -12,6 +17,14 @@ const startNewChat = (data) => {
     if (data){
         // alert(data)
         store.dispatch('startNewChat',data)
+        // store.dispatch('getNewChatResponse',data)
+
+        console.log({router})
+        // router.push({ name: 'chat', params: { id: 81 } })
+
+
+        // navigate
+
         // return
     }
     // let msg = chatInput.value.value
@@ -38,7 +51,7 @@ onMounted(() => {
         @click="startNewChat(i.example_text)"
         class="card input-style relaive items-end  overflow-hidden hover:bg-white hover:text-black  cursor-pointer
                group  transition-all duration-700 rounded-2xl p-4">
-            
+
             <p class="w-full inline h-full group-hover:scale-200"> 
                 {{ i.example_text }}
             </p>
@@ -57,7 +70,7 @@ onMounted(() => {
               <fa 
               @click="startNewChat"
               class="inline cursor-pointer text-2xl absolute text-white right-0 hover:bg-white origin-center duration-200 hover:text-black/50 h-6 rounded-full p-4" icon="arrow-right" /> 
-             
+
             </input>
         </div>
 
