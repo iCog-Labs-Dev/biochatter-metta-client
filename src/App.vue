@@ -12,6 +12,8 @@ import ModalContainer from './components/ModalContainer.vue'
 import File from './components/File.vue';
 import Help from './components/Help.vue';
 
+import { router } from './main';
+
 let show = ref(false);
 
 let isModalSettings = ref(false);
@@ -48,9 +50,9 @@ onMounted(()=>{
 
 <!-- status/error indicator -->
   <div 
-  :class="status.isPresent? 'scale-1' : 'scale-0'"
+  :class="status.isPresent? 'translate-y-0':'-translate-y-[400px]'"
   class="
-  scale-1 transition-transform duration-700
+  transition-transform duration-700
   flex flex-col gap-10 h-fit max-h-full max-w-full p-5 rounded-md absolute m-auto left-1/2 -translate-x-1/2 top-10 
   w-1/4 cbg-slate-600 text-white input-style z-[9999999999999]">
     
@@ -87,7 +89,7 @@ onMounted(()=>{
     <div class="w-full h-full md:w-1/3 lg:w-1/4 flex flex-col text-white text-center">
       <div class="w-full h-full rounded-xl bg-card houtline goutline-1 goutline-white flex flex-col gap-5 dborder-b">
         <div class="text-start flex items-center gap-4 m-auto pt-5">
-          <img class="w-10" src="./assets//logo.png" />
+          <img class="w-10" src="./assets/rejuve.png" /> 
           <span class="text-2xl font-bold">BioChatter-MeTTa</span>
         </div>
 
@@ -107,7 +109,7 @@ onMounted(()=>{
       <!-- chat list -->
         <div 
         ref="scrollToTop"
-        class="cont boutline items-center outline-1 flex flex-col-reverse flex-1 overflow-y-scroll [cscrollbar-width:none] overflow-x-hidden h-5/6">
+        class="cont boutline items-center outline-1 flex flex-col flex-1 overflow-y-scroll [cscrollbar-width:none] overflow-x-hidden h-5/6">
           <router-link class="w-full" v-for="(i,index) in chatList.chatList" :to="{name:'chat', params:{id:i.id}}">
             <div class="card p-3 text-center md:text-start hover:bg-white/40 ">
               
@@ -142,7 +144,7 @@ onMounted(()=>{
             class="cursor-pointer"
             icon="folder-plus" />
           <router-link :to="{name:'topics'}">
-             <fa class="bg-white text-black p-2 aspect-square rounded-full" icon="home" />
+             <fa class="bg-white text-black/70 p-2 aspect-square rounded-full" icon="home" />
           </router-link>
             <fa @click='isModalSettings = !isModalSettings;' class="cursor-pointer" icon="gear" />
         </div>
@@ -153,9 +155,10 @@ onMounted(()=>{
     <div
     :class="show ? '-translate-y-full md:translate-y-0 ':'translate-y-0'" 
     class="flex flex-col flex-1 rounded-xl bg-card text-white joutline joutline-1 ojutline-white relative  h-full transition-transform duration-200  ">
-      <div class="text-white/40 heading flex justify-between border-b-0 h-fit py-2 px-4">
+      <div class="text-white heading flex justify-between border-b-0 h-fit py-2 px-4">
         <p class="capitalize">
-          title
+          <!-- {{ router.currentRoute.value.fullPath.includes('chat') ? router.currentRoute.value.fullPath.split('/')[2] : 'Query to start a conversation' }} -->
+          {{ router.currentRoute.value.fullPath.includes('chat') ? chatList.chatList[router.currentRoute.value.fullPath.split('/')[2]]['chat_name'].replace(' " ','') : 'Query to start a conversation' }}
         </p>
 
         <div class="flex gap-5 text-white/40 items-center">

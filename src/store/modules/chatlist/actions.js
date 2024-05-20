@@ -71,17 +71,17 @@ const startNewChat = async(context,data)=>{
 
     router.push({ name: 'chat', params: { id: chat_record.id } })
     
-     // let user_question = {
-     //     is_user_message: true,
-     //     message_text: data,
-     //     message_updated_at: new Date().now,
-     // }
+     let user_question = {
+         is_user_message: true,
+         message_text: data,
+         message_updated_at: new Date().now,
+     }
      
     
-    // setTimeout(() => {
-    //   context.commit("appendChat", user_question);
+    setTimeout(() => {
+      context.commit("appendChat", user_question);
       
-    // },2000)
+    },1500)
     // response = await axios({
     //   method: "post",
     //   // url:url + data.id + '/chats/',

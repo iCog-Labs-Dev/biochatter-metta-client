@@ -17,7 +17,7 @@ onMounted(()=>{})
 </script>
 
 <template>
-    <div class='coverflow-scroll flex flex-col cflex-1 w-full bg-color-light-gray coutline outline-red-500 h-max relative transition-transform duration-700' >
+    <div class='coverflow-scroll bg-white/5 flex flex-col cflex-1 w-full bg-color-light-gray coutline outline-red-500 h-max relative transition-transform duration-700' >
 
                 <Stepper/>
             

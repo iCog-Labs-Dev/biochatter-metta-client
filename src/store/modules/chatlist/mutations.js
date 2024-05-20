@@ -17,7 +17,7 @@ export default {
      * @return {void}
      */
     appendChatList(state,payload) {
-        state.chatList=[...state.chatList,payload]
+        state.chatList=[payload,...state.chatList,]
     },
     /**
  * Appends a chat to the chat list in the state.
