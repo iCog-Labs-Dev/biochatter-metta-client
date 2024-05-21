@@ -6,18 +6,34 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'logo': "url('/src/assets/triangles.png')",
-        'logo': "url('/src/assets/dark_2.png')",
-        'logo': "url('/src/assets/rejuve.png')",
-        'logo': "url('/src/assets/green.png')",
-        'logo': "url('/src/assets/bg-logo.png')",
-        'logo': "url('/src/assets/rejuve2.png')",
-        'logo': "url('/src/assets/colorful.png')",
-        'logo': "url('/src/assets/rejuve3.jpg')",
-        'logo': "url('/src/assets/rejuve1.png')",
+        'bg-logo.png': "url('/src/assets/bg-logo.png')",
+        'rejuve.png': "url('/src/assets/rejuve.png')",
+        'rejuve1.png': "url('/src/assets/rejuve1.png')",
+        'rejuve2.png': "url('/src/assets/rejuve2.png')",
+        'rejuve3.jpg': "url('/src/assets/rejuve3.jpg')",
+        'dark_2.png': "url('/src/assets/dark_2.png')",
+        'green.png': "url('/src/assets/green.png')",
+        'colorful.png': "url('/src/assets/colorful.png')",
+        'triangles.png': "url('/src/assets/triangles.png')",
       }
     },
   },
   plugins: [],
 }
 
+// corresponding datae in theme storedata
+// {
+//   name:'th1',
+//   url:'/src/assets/bg-logo.png'},
+//   {
+//   name:'th2',
+//   url:'/src/assets/rejuve.png',},
+//   {
+//   name:'th3',
+//   url:'/src/assets/rejuve1.png'},
+//   {
+//   name:'th4',
+//   url:'/src/assets/rejuve2.png'},
+//   {
+//   name:'th5',
+//   url:'/src/assets/rejuve3.jpg'},

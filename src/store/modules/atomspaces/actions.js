@@ -60,7 +60,7 @@ const submitAtomspaces = errorHandler(async(context, data) =>{
         url: url,
         data: data
       });
-      store.dispatch('toggleUploadStatus',{uploading:false,success:true})
+      store.dispatch('submitAtomspaces',{uploading:false,success:true})
 
     } catch (error) {
       store.dispatch('toggleUploadStatus',{uploading:false,success:false})

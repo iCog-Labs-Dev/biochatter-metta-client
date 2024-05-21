@@ -31,7 +31,7 @@ const loadChatList= errorHandler(async (context) => {
  * @param {number} data.index - The index of the chat in the state.
  * @return {Promise<void>} A promise that resolves when the chat is deleted and removed from the state.
  */
-const delChat= async (context,data) => {
+const delChat= errorHandler(async (context,data) => {
 
     console.log("del chat")
     console.log(url)
@@ -42,7 +42,7 @@ const delChat= async (context,data) => {
     });
     context.commit('remChat',data.index)
   }
-
+)
   /**
  * Starts a new chat by sending a message and navigating to the chat page.
  *
@@ -50,7 +50,7 @@ const delChat= async (context,data) => {
  * @param {string} data - The message text to send in the new chat.
  * @return {Promise} A promise that resolves when the new chat is started.
  */
-const startNewChat = async(context,data)=>{
+const startNewChat = errorHandler(async(context,data)=>{
 
     console.log("startNewChat")
     console.log('data',data)
@@ -95,7 +95,7 @@ const startNewChat = async(context,data)=>{
    sendChat(context,{msg:data, chat_id:chat_record.id})
     // // context.commit("saveTopics", response.data.results);
     
-  }
+  })
 
 const getNewChatResponse = errorHandler(async(context,data)=>{
   let user_question = {
@@ -160,7 +160,7 @@ const sendChat= errorHandler(async (context,data) => {
  * @param {string} data.chat_id - The ID of the chat to retrieve.
  * @return {Promise<void>} A Promise that resolves when the chat is retrieved and saved.
  */
-const getChat= (async (context,data) => {
+const getChat= errorHandler(async (context,data) => {
 
     const response = await axios({
       method: "get",

@@ -1,6 +1,6 @@
 <script setup>
 
-import { useStore } from 'vuex'
+import { createLogger, useStore } from 'vuex'
 import { useRouter } from "vue-router";
 import { computed, onMounted,ref } from 'vue'
 
@@ -13,25 +13,9 @@ let chatInput = ref(null);
 const examples = computed(() => store.state.example)
 
 const startNewChat = (data) => {
-
-    if (data){
-        // alert(data)
+    if (data!=="" && data!==null && data!==undefined){
         store.dispatch('startNewChat',data)
-        // store.dispatch('getNewChatResponse',data)
-
-        console.log({router})
-        // router.push({ name: 'chat', params: { id: 81 } })
-
-
-        // navigate
-
-        // return
     }
-    // let msg = chatInput.value.value
-    // store.dispatch('startNewChat',msg)
-    // console.log(i)
-    // store.dispatch('startNewChat',i)
-    // store.dispatch('loadChatList')
 }
 
 onMounted(() => {
@@ -58,17 +42,16 @@ onMounted(() => {
         </div>
     </div>
 
-    <div 
-        class="group w-3/4 flex items-center absolute bottom-[50px] left-1/2 -translate-x-1/2">
+    <div class="group w-3/4 flex items-center absolute bottom-[50px] left-1/2 -translate-x-1/2">
             <input 
             class="placeholder-white/40 input-style pr-12  relative w-full rounded-full  h-fit p-4" 
             ref="chatInput"
             type="text"
-            @keypress.enter="startNewChat"
+            @keypress.enter="startNewChat(chatInput.value)"
             placeholder="Ask me a question">
 
-              <fa 
-              @click="startNewChat"
+              <fa
+              @click="startNewChat(chatInput.value)"
               class="inline cursor-pointer text-2xl absolute text-white right-0 hover:bg-white origin-center duration-200 hover:text-black/50 h-6 rounded-full p-4" icon="arrow-right" /> 
 
             </input>

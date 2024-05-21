@@ -26,7 +26,9 @@ const {dateFormatter} = utils
 
 const store = useStore();
 
-const chatList = computed(() => store.state.chat);
+const theme = computed(() => store.state.theme.theme);
+const themes = computed(() => store.state.theme.allThemes);
+const chatList = computed(() => store.state.chat.chatList);
 const status = computed(() => store.state.status);
 // const kk = computed(() => store.state);
 
@@ -37,8 +39,6 @@ const deleteChat = (data) =>{
 
 onMounted(()=>{
   store.dispatch('loadChatList')
-
-  console.log(scrollToTop.value.clientHeight,'scroll height')
   scrollToTop.value.scrollTo(-scrollToTop.value.clientHeight, -scrollToTop.value.clientHeight);
 })
 
@@ -60,12 +60,12 @@ onMounted(()=>{
 
     <div class="actions flex justify-around">
 
-      
       <Button
       class="bg-white text-black w-fit mx-auto p-4 capitalize rounded-xl"
       @click="store.dispatch('remStatus')">
       cancel
     </Button>
+
   </div>
   
   </div>
@@ -82,15 +82,19 @@ onMounted(()=>{
     <File      />
   </ModalContainer>
 
-
-  <div class="bg-logo bg-no-repeat bg-cover bg-fixed bg-center capitalize overflow-hidden  md:flex flex-1 gap-5 md:gap-3 lg:gap-5s md:p-5 w-screen h-screen">
+  <div 
+  :style="{'--image-url': `url(${themes[theme].url})`}" 
+  :class="['bg-[image:var(--image-url)]']"
+  class="bg-no-repeat bg-cover bg-fixed bg-center capitalize overflow-hidden  md:flex flex-1 gap-5 md:gap-3 lg:gap-5s md:p-5 w-screen h-screen">
 
     <!-- chat navigation -->
     <div class="w-full h-full md:w-1/3 lg:w-1/4 flex flex-col text-white text-center">
       <div class="w-full h-full rounded-xl bg-card houtline goutline-1 goutline-white flex flex-col gap-5 dborder-b">
+        
         <div class="text-start flex items-center gap-4 m-auto pt-5">
           <img class="w-10" src="./assets/rejuve.png" /> 
-          <span class="text-2xl font-bold">BioChatter-MeTTa</span>
+          <span class="text-2xl font-bold">BioChatter-MeTTa
+          </span>
         </div>
 
         <!-- search bar-->
@@ -105,36 +109,38 @@ onMounted(()=>{
             </input>
         </div>
 
-  
-      <!-- chat list -->
-        <div 
-        ref="scrollToTop"
-        class="cont boutline items-center outline-1 flex flex-col flex-1 overflow-y-scroll [cscrollbar-width:none] overflow-x-hidden h-5/6">
-          <router-link class="w-full" v-for="(i,index) in chatList.chatList" :to="{name:'chat', params:{id:i.id}}">
-            <div class="card p-3 text-center md:text-start hover:bg-white/40 ">
-              
-              <div class="w-full boutline flex gap-5 justify-between items-center p-1">
-                <p class="boutline text-start w-full">
-                  <span class="block font-medium bwhitespace-nowrap text-ellipsis overflow-hidden text-lg boutline outline-blue-600 bw-[20ch] md:bw-[8ch] lg:bw-[25ch]">
-                    {{ i.chat_name }} {{ i.topic_id }}
-                  </span>
-                  <span class="text-slate-400 md:text-sm font-light py-2"> 
-                    {{ dateFormatter(i.chat_created_at) }}
-                  </span>
-                </p>
+        <!-- chat list -->
+          <div 
+            ref="scrollToTop"
+            class="cont boutline items-center outline-1 flex flex-col flex-1 overflow-y-scroll [cscrollbar-width:none] overflow-x-hidden h-5/6">
+            <!-- {{ chatList?.length }} -->
+            <router-link class="w-full" v-for="(i,index) in chatList" :to="{name:'chat', params:{id:i.id}}">
+              <div 
+              :class="router.currentRoute.value.fullPath.split('/')[2]==i.id?'bg-white/40':''"
+              class="card p-3 text-center md:text-start hover:bg-white/40 ">
                 
-                <div 
-                @click="deleteChat({id:i.id,index})"
-                class="hover:bg-red-700/80 bg-white/20 px-3 py-1 rounded-full">
-                <fa icon="broom" />
-                </div>
+                <div class="w-full boutline flex gap-5 justify-between items-center p-1">
+                  <p class="boutline text-start w-full">
+                    <span class="block font-medium bwhitespace-nowrap text-ellipsis overflow-hidden text-lg boutline outline-blue-600 bw-[20ch] md:bw-[8ch] lg:bw-[25ch]">
+                      {{ i.chat_name }}
+                    </span>
+                    <span class="text-slate-400 md:text-sm font-light py-2"> 
+                      {{ dateFormatter(i.chat_created_at) }}
+                    </span>
+                  </p>
+                  
+                  <div 
+                  @click="deleteChat({id:i.id,index})"
+                  class="hover:bg-red-700/80 bg-white/20 px-3 py-1 rounded-full">
+                  <fa icon="broom" />
+                  </div>
 
+                </div>
+                
               </div>
-              
-            </div>
-          </router-link>
-          
-        </div>
+            </router-link>
+            
+          </div>
 
         <!-- navigation -->
         <div class="buttons gap-12 odutline odutline-1 self-center h-16 text-2xl lg:text-2xl outline-white px-10 fmd:px-10 rounded-full flex justify-between items-center ">
@@ -144,10 +150,11 @@ onMounted(()=>{
             class="cursor-pointer"
             icon="folder-plus" />
           <router-link :to="{name:'topics'}">
-             <fa class="bg-white text-black/70 p-2 aspect-square rounded-full" icon="home" />
+              <fa class="bg-white text-black/70 p-2 aspect-square rounded-full" icon="home" />
           </router-link>
             <fa @click='isModalSettings = !isModalSettings;' class="cursor-pointer" icon="gear" />
         </div>
+
       </div>
     </div>
 
@@ -158,7 +165,15 @@ onMounted(()=>{
       <div class="text-white heading flex justify-between border-b-0 h-fit py-2 px-4">
         <p class="capitalize">
           <!-- {{ router.currentRoute.value.fullPath.includes('chat') ? router.currentRoute.value.fullPath.split('/')[2] : 'Query to start a conversation' }} -->
-          {{ router.currentRoute.value.fullPath.includes('chat') ? chatList.chatList[router.currentRoute.value.fullPath.split('/')[2]]['chat_name'].replace(' " ','') : 'Query to start a conversation' }}
+          <!-- {{ router.currentRoute.value.fullPath.split('/')[2] && chatList[router.currentRoute.value.fullPath.split('/')[2]] }} -->
+          <!-- {{ router.currentRoute.value.fullPath.includes('chat') 
+          && chatList[router.currentRoute.value.fullPath.split('/')[2]] 
+          ? chatList[router.currentRoute.value.fullPath.split('/')[2]] : 'Query to start a conversation' 
+          }} -->
+          <!-- {{ router.currentRoute.value.fullPath.includes('chat') && chatList  }} -->
+          <!-- dslkflkjfd -->
+          <!-- {{ chatList }} -->
+          <!-- {{ router.currentRoute.value.fullPath.split('/') }} -->
         </p>
 
         <div class="flex gap-5 text-white/40 items-center">

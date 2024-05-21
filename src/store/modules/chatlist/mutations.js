@@ -29,7 +29,8 @@ export default {
     appendChat(state,payload) {
         state.chat=[payload,...state.chat]
     },
-    /**
+
+/**
  * Removes a chat from the state.
  *
  * @param {Object} state - The Vuex state object.

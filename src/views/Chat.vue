@@ -5,11 +5,12 @@ import {useRoute} from "vue-router";
 import  {marked} from "marked";
 
 let route = useRoute();
-let chatInput = ref(null);
 const store = useStore();
+
 const chat = computed(() => store.state.chat.chat);
 const isWaiting = computed(() => store.state.chat.isWaiting);
 
+let chatInput = ref(null);
 
 onMounted(() => {
   store.dispatch('getChat',{chat_id: route.params.id});
@@ -22,15 +23,16 @@ watch(()=> route.params.id, (newId,oldId) => {
   store.dispatch('getChat',{chat_id: route.params.id})
 })
 
-    /**
-     * Sends a chat message.
-     *
-     * @return {void} No return value.
-     */
+/**
+ * Sends a chat message.
+ *
+ * @return {void} No return value.
+ */
 const sendChat = () =>{
   let msg = chatInput.value.value
   store.dispatch('sendChat',{msg,chat_id: route.params.id})
 }
+
 </script>
 
 <template>
@@ -47,7 +49,7 @@ const sendChat = () =>{
     class="chat-in">
       <img 
       class="chat-image"
-      :src="i?.is_user_message ? './../assets/user_icon.png' : './../assets/logo.png'"
+      :src="i?.is_user_message ? './../assets/user_icon.png' : './../assets/bg-logo.png'"
       alt="" />
       
       <div v-html="marked.parse(i?.message_text)" class="chat-message">
@@ -57,12 +59,12 @@ const sendChat = () =>{
 
   </div>
   
-  <!-- stop loading -->
+  <!-- loading -->
   <div 
   :class="isWaiting ? 'scale-1' : 'scale-0'"
   class="group transition-all origin-center duration-700 w-1/4 flex items-center absolute bottom-[120px] left-1/2 -translate-x-1/2">
       <p class="input-style px-5 text-center flex items-center gap-1 p-1 rounded-full">
-          Thinking...
+        Loading...
       
       </p>
   </div>
